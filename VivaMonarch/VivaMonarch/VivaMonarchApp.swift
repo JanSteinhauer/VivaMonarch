@@ -19,5 +19,8 @@ struct VivaMonarchApp: App {
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView(viewModel: viewModel)
         }.immersionStyle(selection: .constant(.full), in: .full)
+        ImmersiveSpace(id: "showImmersiveSpaceGallery") {
+            ImmersiveViewGallery()
+        }
     }
 }

@@ -1,16 +1,46 @@
 import RealityKit
-import Observation
 import AVFoundation
-import WebKit
+import Combine
+import Observation
 
 @Observable
 class ViewModel {
 
     private var contentEntity = Entity()
     private let avPlayer = AVPlayer()
+    private var playerItem: AVPlayerItem?
+    private var endPlaybackObserver: Any?
+
+    init() {
+        setupAvPlayer()
+        setupLooping()
+    }
+
+    deinit {
+        if let observer = endPlaybackObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+
+    private func setupAvPlayer() {
+        let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/vivamonarch-b34f3.appspot.com/o/Monarch6.mp4?alt=media&token=b8b6bb34-ce96-426e-9c03-ee2947883e94")
+        let asset = AVAsset(url: url!)
+        playerItem = AVPlayerItem(asset: asset)
+        avPlayer.replaceCurrentItem(with: playerItem)
+    }
+
+    private func setupLooping() {
+        endPlaybackObserver = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: playerItem,
+            queue: nil
+        ) { [weak self] _ in
+            self?.avPlayer.seek(to: CMTime.zero)
+            self?.avPlayer.play()
+        }
+    }
 
     func setupContentEntity() -> Entity {
-        setupAvPlayer()
         let material = VideoMaterial(avPlayer: avPlayer)
 
         let sphere = try! Entity.load(named: "Sphere")
@@ -31,13 +61,5 @@ class ViewModel {
 
     func pause() {
         avPlayer.pause()
-    }
-
-    private func setupAvPlayer() {
-//        let url = Bundle.main.url(forResource: "ayutthaya", withExtension: "mp4")
-        let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/flutterthroughvr.appspot.com/o/VID_20240310_112115_00_011.mp4?alt=media&token=26a9354d-35b3-4894-8a17-dfcfc10151aa")
-        let asset = AVAsset(url: url!)
-        let playerItem = AVPlayerItem(asset: asset)
-        avPlayer.replaceCurrentItem(with: playerItem)
     }
 }
