@@ -22,6 +22,8 @@
 		EB0390D52BB9B3C3004423E0 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D42BB9B3C3004423E0 /* Title.swift */; };
 		EB0390D72BB9BC79004423E0 /* DigitalRain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D62BB9BC79004423E0 /* DigitalRain.swift */; };
 		EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D82BB9BCB0004423E0 /* Shaders.metal */; };
+		EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B1E2BC86E08000B003D /* StartArea.wav */; };
+		EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B202BC86ECD000B003D /* monarch.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		EB0390D42BB9B3C3004423E0 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		EB0390D62BB9BC79004423E0 /* DigitalRain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRain.swift; sourceTree = "<group>"; };
 		EB0390D82BB9BCB0004423E0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		EBCE0B1E2BC86E08000B003D /* StartArea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StartArea.wav; sourceTree = "<group>"; };
+		EBCE0B202BC86ECD000B003D /* monarch.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = monarch.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				EB0390D22BB9B386004423E0 /* TypeTextModifier.swift */,
 				EB0390B62BB997A6004423E0 /* VivaMonarchApp.swift */,
 				EB0390B82BB997A6004423E0 /* ContentView.swift */,
+				EBCE0B202BC86ECD000B003D /* monarch.usdz */,
+				EBCE0B1E2BC86E08000B003D /* StartArea.wav */,
 				EB0390CE2BB9A08D004423E0 /* Gallery.swift */,
 				EB0390D02BB9A7A6004423E0 /* ImmersiveViewGallery.swift */,
 				EB0390BA2BB997A6004423E0 /* ImmersiveView.swift */,
@@ -182,8 +188,10 @@
 			files = (
 				EB0390BF2BB997A8004423E0 /* Assets.xcassets in Resources */,
 				EB0390CD2BB99B32004423E0 /* Sphere.usda in Resources */,
+				EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */,
 				EB0390C22BB997A8004423E0 /* Preview Assets.xcassets in Resources */,
 				EB0390BD2BB997A6004423E0 /* ImageBasedLighting.skybox in Resources */,
+				EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
