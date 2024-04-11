@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct VivaMonarchApp: App {
     @State private var viewModel = ViewModel()
+    @State private var model = Title()
 
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: viewModel)
+                .environment(model)
         }
 
         ImmersiveSpace(id: "ImmersiveSpace") {

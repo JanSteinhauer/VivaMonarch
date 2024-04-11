@@ -41,19 +41,37 @@ class ViewModel {
     }
 
     func setupContentEntity() -> Entity {
-        let material = VideoMaterial(avPlayer: avPlayer)
+        let avPlayerMaterial = VideoMaterial(avPlayer: avPlayer)
 
         let sphere = try! Entity.load(named: "Sphere")
         sphere.scale = .init(x: 1E3, y: 1E3, z: 1E3)
 
         let modelEntity = sphere.children[0].children[0] as! ModelEntity
-        modelEntity.model?.materials = [material]
+        modelEntity.model?.materials = [avPlayerMaterial]
 
+        // Create a red overlay material
+        let redOverlayMaterial = SimpleMaterial(color: .black.withAlphaComponent(0.5), isMetallic: false)
+
+        // Create an overlay entity with the red material
+        let overlayEntity = ModelEntity(mesh: .generateSphere(radius: 0.5), materials: [redOverlayMaterial])
+        
+        // Match the scale of the model entity and make it 5 times bigger
+        overlayEntity.scale = modelEntity.scale * 10.0 // Multiply each component of the scale by 5
+
+        overlayEntity.position = modelEntity.position + [0, 0, 0.1] // Slightly in front of the model entity
+
+        // Add both the model and overlay entities to the contentEntity
         contentEntity.addChild(sphere)
+        contentEntity.addChild(overlayEntity) // Add the overlay entity
         contentEntity.scale *= .init(x: -1, y: 1, z: 1)
 
         return contentEntity
     }
+
+
+
+    
+    
 
     func play() {
         avPlayer.play()
