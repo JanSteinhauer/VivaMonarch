@@ -1,0 +1,194 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Group", "FCEB673B_6ACE_4A29_8A0E_A2DA59C6B9BB"]
+    rel material:binding = None (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+
+    def Xform "Group" (
+        active = true
+    )
+    {
+        float3 xformOp:translate = (0, 0.4168148, -0.86449647)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "GridMaterial" (
+            active = true
+            references = @Materials/GridMaterial.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "America" (
+            active = true
+            references = @America.usdz@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.0029999996, 0.0029999996, 0.0029999996)
+            float3 xformOp:translate = (0, 0.544676, -0.029346958)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def Xform "countries" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "canada" (
+                active = true
+                references = @pin.usdz@
+            )
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.001, 0.001, 0.001)
+                float3 xformOp:translate = (-0.10899193, 0.7487472, 0.07558577)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def "us" (
+                active = true
+                references = @pin.usdz@
+            )
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.001, 0.001, 0.001)
+                float3 xformOp:translate = (0.0063000657, 0.48175728, 0.19443704)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "Materials"
+                {
+                    over "Material_001"
+                    {
+                        token outputs:surface.connect = </Root/Group/countries/us/Materials/Material_001/pbr_shader.outputs:surface>
+                    }
+                }
+            }
+
+            def "mexico" (
+                active = true
+                references = @pin.usdz@
+            )
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.0011936253, 0.0011936253, 0.0011936253)
+                float3 xformOp:translate = (-0.03250347, 0.3245334, 0.20714284)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "Materials"
+                {
+                    over "Material_001"
+                    {
+                        token outputs:surface.connect = </Root/Group/countries/mexico/Materials/Material_001/pbr_shader.outputs:surface>
+                    }
+                }
+            }
+        }
+
+        def Xform "Group" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (1.5707963, 0, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.70710677, 0.7071067, 0, 0)
+            float3 xformOp:scale = (0.099999964, 0.099999964, 0.099999964)
+            float3 xformOp:translate = (-0.061344758, 0.69388807, 0.13443339)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "Butterfly_Monarch" (
+                active = true
+                customData = {
+                    float3 rotationEulerHint = (0, 0, -0.006947033)
+                }
+                references = @Butterfly_Monarch.usdz@
+            )
+            {
+                quatf xformOp:orient = (0.999994, 0, 0, -0.003469885)
+                float3 xformOp:scale = (0.0010000002, 0.0010000002, 0.001)
+                float3 xformOp:translate = (0.06216654, -7.450581e-9, 0.013240747)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "SkinnedMeshes"
+                {
+                    over "Sketchfab_model"
+                    {
+                        over "root"
+                        {
+                            over "GLTF_SceneRootNode"
+                            {
+                                over "Armature_66"
+                                {
+                                    over "GLTF_created_0"
+                                    {
+                                        over "GLTF_created_0_rootJoint"
+                                        {
+                                            over "skin0"
+                                            {
+                                                over "Object_0"
+                                                {
+                                                }
+
+                                                over "Object_1"
+                                                {
+                                                }
+
+                                                over "Object_2"
+                                                {
+                                                }
+
+                                                over "Object_3"
+                                                {
+                                                }
+
+                                                over "Object_4"
+                                                {
+                                                }
+
+                                                over "Object_5"
+                                                {
+                                                }
+
+                                                over "Object_6"
+                                                {
+                                                }
+
+                                                over "Object_7"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "ImageBasedLight"
+        {
+            uniform token info:id = "RealityKit.ImageBasedLight"
+            float intensityExponent = 8.212104
+            bool isGlobalIBL = 0
+        }
+    }
+}
+

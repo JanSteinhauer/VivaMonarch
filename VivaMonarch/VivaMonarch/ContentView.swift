@@ -9,6 +9,7 @@ struct ContentView: View {
 
     @State private var showImmersiveSpace = false
     @State private var showImmersiveSpaceGallery = false
+    @State private var showImmersiveSpaceAmerica = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
 
@@ -60,6 +61,8 @@ struct ContentView: View {
                     .toggleStyle(.button)
                 Toggle("Show ImmersiveGallery", isOn: $showImmersiveSpaceGallery)
                     .toggleStyle(.button)
+                Toggle("Show Immersive America", isOn: $showImmersiveSpaceAmerica)
+                    .toggleStyle(.button)
                 Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
                                   Text("Show Instagram")
                                       .foregroundColor(.white)
@@ -107,6 +110,15 @@ struct ContentView: View {
             Task {
                 if newValue {
                     await openImmersiveSpace(id: "showImmersiveSpaceGallery")
+                } else {
+                    await dismissImmersiveSpace()
+                }
+            }
+        }
+        .onChange(of: showImmersiveSpaceAmerica) { _, newValue in
+            Task {
+                if newValue {
+                    await openImmersiveSpace(id: "showImmersiveSpaceAmerica")
                 } else {
                     await dismissImmersiveSpace()
                 }
