@@ -15,28 +15,20 @@ struct ContentView: View {
 
     var baseYear: Int = 2024
 
-    
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-    
-    
+
     private func playSound(named soundFileName: String) {
-        print("I was here 0")
-            guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
-        print("I was here 1,5")
-            let url = URL(fileURLWithPath: path)
-        print("I was here 1,7")
-            do {
-                print("I was here 1")
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.prepareToPlay()
-                print("I was here 2")
-                audioPlayer?.play()
-                print("I was here 3")
-            } catch {
-                print("Could not load file")
-            }
+        guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
+        let url = URL(fileURLWithPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+        } catch {
+            print("Could not load file")
         }
+    }
 
     var body: some View {
         @Bindable var model = model
@@ -47,6 +39,7 @@ struct ContentView: View {
                     .monospaced()
                     .font(.system(size: 50, weight: .bold))
                     .padding(.horizontal, 40)
+                    .padding(.top, 20)
                     .hidden()
                     .overlay(alignment: .leading) {
                         Text(model.titleText)
@@ -57,46 +50,124 @@ struct ContentView: View {
                 Text("Start your journey NOW")
                     .font(.title)
                     .opacity(model.isTitleFinished ? 1 : 0)
-                Toggle("Show ImmersiveSpace", isOn: $showImmersiveSpace)
-                    .toggleStyle(.button)
-                Toggle("Show ImmersiveGallery", isOn: $showImmersiveSpaceGallery)
-                    .toggleStyle(.button)
-                Toggle("Show Immersive America", isOn: $showImmersiveSpaceAmerica)
-                    .toggleStyle(.button)
-                Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
-                                  Text("Show Instagram")
-                                      .foregroundColor(.white)
-                                      .padding()
-                                      .background(Color.gray.opacity(0.2))
-                                      .cornerRadius(5)
-                              }
-                Button {
-                    playSound(named: "StartArea.wav")
-                } label: {
-                    Text("Play Sound")
-                }
+                LazyVGrid(columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ], spacing: 10) {  // Increased spacing between items for better visual separation
+                    VStack {
+                        Toggle(isOn: $showImmersiveSpace) {
+                            HStack {
+                                Text("🔲")
+                                    .font(.system(size: 40))  // Slightly larger emoji
+                                Text("Immersive Space")
+                                    .font(.system(size: 22))  // Larger text for clarity
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        }
+                        .toggleStyle(.button)
+                    }
+                    .padding()
 
-                
-             
+                    VStack {
+                        Toggle(isOn: $showImmersiveSpaceGallery) {
+                            HStack {
+                                Text("🖼️")
+                                    .font(.system(size: 40))
+                                Text("Gallery")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.black)
+                            }
+                          
+                            .padding()
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        }
+                        .toggleStyle(.button)
+                    }
+                    .padding()
+
+                    VStack {
+                        Toggle(isOn: $showImmersiveSpaceAmerica) {
+                            HStack {
+                                Text("🇺🇸")
+                                    .font(.system(size: 40))
+                                Text("Butterflies through America")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        }
+                        .toggleStyle(.button)
+                    }
+                    .padding()
+
+                    VStack {
+                        Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
+                            HStack {
+                                Text("📷")
+                                    .font(.system(size: 40))
+                                Text("Instagram")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .background(.gray.opacity(0.2))
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        }
+                    }
+                    .padding()
+
+                    VStack {
+                        Button(action: {
+                            playSound(named: "StartArea.wav")
+                        }) {
+                            HStack {
+                                Text("▶️")
+                                    .font(.system(size: 40))
+                                Text("Start Audioguide")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        }
+                    }
                   
-               
-                Slider(value: $sliderValue, in: -10...10, step: 1)
-                                   .padding()
-                               
-                Text("Current year: \(String(Int(sliderValue) + baseYear))")
-                                    .padding()
+                }
+                .padding()
+                .background(Color.clear)
+
+
+                // Aesthetic Slider Section
+                VStack(spacing: 10) {
+                    Slider(value: $sliderValue, in: -100...100, step: 1)
+                        .padding(.horizontal, 20)
+                        .accentColor(.blue) // Change slider color
+                        .frame(maxWidth: 300) // Limit the width of the slider
+                    Text("Current year: \(String(Int(sliderValue) + baseYear))")
+                        .padding(.top, 5)
+                        .font(.headline)
+                }
+                .padding()
+                .background(Color.gray.opacity(0.1)) // Background color for the slider section
+                .cornerRadius(10)
+                .padding(.top, 20)
             }
-//            .onAppear {
-//                           playSound(named: "StartArea.wav")
-//                       }
             .typeText(
                 text: $model.titleText,
                 finalText: model.finalTitle,
                 isFinished: $model.isTitleFinished,
-                isAnimated: !model.isTitleFinished)
+                isAnimated: !model.isTitleFinished
+            )
             .animation(.default.speed(0.25), value: model.isTitleFinished)
         }
-        
         .onChange(of: showImmersiveSpace) { _, newValue in
             Task {
                 if newValue {
