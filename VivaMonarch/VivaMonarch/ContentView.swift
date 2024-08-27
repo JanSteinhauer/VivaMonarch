@@ -7,6 +7,7 @@ struct ContentView: View {
     var viewModel: ViewModel
     @Environment(Title.self) private var model
 
+    @State private var currentImmersiveSpace: String? = nil
     @State private var showImmersiveSpace = false
     @State private var showImmersiveSpaceGallery = false
     @State private var showImmersiveSpaceAmerica = false
@@ -144,7 +145,6 @@ struct ContentView: View {
                 .padding()
                 .background(Color.clear)
 
-
                 // Aesthetic Slider Section
                 VStack(spacing: 10) {
                     Slider(value: $sliderValue, in: -100...100, step: 1)
@@ -169,30 +169,28 @@ struct ContentView: View {
             .animation(.default.speed(0.25), value: model.isTitleFinished)
         }
         .onChange(of: showImmersiveSpace) { _, newValue in
-            Task {
-                if newValue {
-                    await openImmersiveSpace(id: "ImmersiveSpace")
-                } else {
-                    await dismissImmersiveSpace()
-                }
-            }
+            switchImmersiveSpace(newValue, id: "ImmersiveSpace")
         }
         .onChange(of: showImmersiveSpaceGallery) { _, newValue in
-            Task {
-                if newValue {
-                    await openImmersiveSpace(id: "showImmersiveSpaceGallery")
-                } else {
-                    await dismissImmersiveSpace()
-                }
-            }
+            switchImmersiveSpace(newValue, id: "showImmersiveSpaceGallery")
         }
         .onChange(of: showImmersiveSpaceAmerica) { _, newValue in
-            Task {
-                if newValue {
-                    await openImmersiveSpace(id: "showImmersiveSpaceAmerica")
-                } else {
+            switchImmersiveSpace(newValue, id: "showImmersiveSpaceAmerica")
+        }
+    }
+
+    private func switchImmersiveSpace(_ newValue: Bool, id: String) {
+        Task {
+            if newValue {
+                if let currentSpace = currentImmersiveSpace, currentSpace != id {
                     await dismissImmersiveSpace()
+                    currentImmersiveSpace = nil
                 }
+                await openImmersiveSpace(id: id)
+                currentImmersiveSpace = id
+            } else {
+                await dismissImmersiveSpace()
+                currentImmersiveSpace = nil
             }
         }
     }

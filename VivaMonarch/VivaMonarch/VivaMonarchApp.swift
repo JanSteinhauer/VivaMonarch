@@ -11,6 +11,7 @@ import SwiftUI
 struct VivaMonarchApp: App {
     @State private var viewModel = ViewModel()
     @State private var model = Title()
+    
 
     var body: some Scene {
         WindowGroup {
