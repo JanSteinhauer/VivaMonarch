@@ -62,7 +62,7 @@ class ViewModel {
 
         // Add both the model and overlay entities to the contentEntity
         contentEntity.addChild(sphere)
-        contentEntity.addChild(overlayEntity) // Add the overlay entity
+//        contentEntity.addChild(overlayEntity) // Add the overlay entity
         contentEntity.scale *= .init(x: -1, y: 1, z: 1)
 
         return contentEntity
