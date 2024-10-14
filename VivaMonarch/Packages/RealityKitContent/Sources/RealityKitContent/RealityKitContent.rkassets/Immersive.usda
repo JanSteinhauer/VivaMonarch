@@ -7,44 +7,1071 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Sphere_Left", "Sphere_Right", "GridMaterial"]
-    def Sphere "Sphere_Right" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/GridMaterial/GridMaterial> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.1
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.5, 1.5, -1.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
-    def Sphere "Sphere_Left" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/GridMaterial/GridMaterial> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.1
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.5, 1.5, -1.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
+    reorder nameChildren = ["GridMaterial", "Giant_Manta_Ray_old_ver", "Sea_Green_Turtle", "Butterfly_Monarch", "Timeline", "Capsule", "SkyDome", "Yellow"]
     def "GridMaterial" (
         active = true
-        prepend references = @Materials/GridMaterial.usda@
+        references = @Materials/GridMaterial.usda@
     )
     {
         float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Giant_Manta_Ray_old_ver" (
+        active = true
+        references = @Giant_Manta_Ray_old_ver.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (-2.6693442, 1.3411045e-7, -6.7055225e-8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Giant_Manta_Ray_old_ver/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/Giant_Manta_Ray_old_ver/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Giant_Manta_Ray_old_ver/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Giant_Manta_Ray_old_ver>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/Timeline>
+                rel animationLibraryKeyOverrideKey = </Root/Giant_Manta_Ray_old_ver/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def "Sea_Green_Turtle" (
+        active = true
+        references = @Sea_Green_Turtle.usdz@
+    )
+    {
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (1.8899318, 0.41524518, -0.31731355)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+    }
+
+    def "Butterfly_Monarch" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.24615288, 1.4524142e-8, 1.7966608e-9)
+        }
+        references = @Butterfly_Monarch.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.99243563, 0.12276596, 7.3174222e-9, 0)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (0.04371666, 1.3851075, -1.1075602)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        over "Materials"
+        {
+            over "legs"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "eyes"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
+    }
+
+    def RealityKitTimeline "Timeline"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5", "Track7", "Track8", "Track6", "Track9", "Track10", "Track11", "Track12", "Track13", "Track14"]
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Animation", "Animation2"]
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 3.316666603188379
+                rel target = </Root/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation22"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 6.633333206376759
+                rel target = </Root/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation222"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 9.949999809565139
+                rel target = </Root/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2222"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 13.266666412753517
+                rel target = </Root/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (80, 80)
+                int ui:nodegraph:node:stackingOrder = 4
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation22222"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "77EC4330-559A-4069-94AA-ADAC6727FE90"
+                bool separateAnimatedValue = 1
+                double startTime = 16.583333015941893
+                rel target = </Root/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (100, 100)
+                int ui:nodegraph:node:stackingOrder = 5
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 5.559999942779541
+                uniform token info:id = "17BFA420-11D0-427C-943C-780DD58AB931"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Sea_Green_Turtle>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 5.559999942779541
+                uniform token info:id = "17BFA420-11D0-427C-943C-780DD58AB931"
+                bool separateAnimatedValue = 1
+                double startTime = 11.119999885759084
+                rel target = </Root/Sea_Green_Turtle>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 5.559999942779541
+                uniform token info:id = "17BFA420-11D0-427C-943C-780DD58AB931"
+                bool separateAnimatedValue = 1
+                double startTime = 5.559999942879542
+                rel target = </Root/Sea_Green_Turtle>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation22"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 5.559999942779541
+                uniform token info:id = "17BFA420-11D0-427C-943C-780DD58AB931"
+                bool separateAnimatedValue = 1
+                double startTime = 16.679999828638625
+                rel target = </Root/Sea_Green_Turtle>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 6.633333206176758
+                uniform token info:id = "21EFF714-1B63-4733-892D-6C02E507DA75"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Giant_Manta_Ray_old_ver>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 6.633333206176758
+                uniform token info:id = "21EFF714-1B63-4733-892D-6C02E507DA75"
+                bool separateAnimatedValue = 1
+                double startTime = 6.63333320627676
+                rel target = </Root/Giant_Manta_Ray_old_ver>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation22"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 6.633333206176758
+                uniform token info:id = "21EFF714-1B63-4733-892D-6C02E507DA75"
+                bool separateAnimatedValue = 1
+                double startTime = 13.26666641255352
+                rel target = </Root/Giant_Manta_Ray_old_ver>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Orbit", "Orbit2", "Orbit3"]
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 19.916784734801478
+                uniform token info:id = "613B9B60-86DE-4059-A253-45A057B87E98"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Capsule>
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch>
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            reorder nameChildren = ["Orbit3", "Orbit32"]
+            def RealityKitAction "Orbit3"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 19.91573411668399
+                uniform token info:id = "4A849D72-2F86-4F04-B8C7-22EACA9F7B12"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Capsule>
+                double startTime = 0
+                rel target = </Root/Sea_Green_Turtle>
+            }
+        }
+
+        def RealityKitTrack "Track8"
+        {
+            reorder nameChildren = ["Hide", "Hide2", "Spin"]
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.06255669621928946
+                uniform token info:id = "52C62C33-D348-4943-9245-545C0042932A"
+                double startTime = 0
+                rel target = </Root/Capsule>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "easeOut"
+                }
+            }
+
+            def RealityKitAction "Hide2"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "DD763A05-BA83-404B-AC8F-5F2D6E244DCC"
+                double startTime = 16.666952137000266
+                rel target = </Root/Sea_Green_Turtle>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide3"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "401AC7D7-68A0-4D3B-B3FC-34A1D37150DF"
+                double startTime = 17.757346055298385
+                rel target = </Root/Butterfly_Monarch_2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide4"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "F81D00F1-BC18-4224-BE9D-2F686608D269"
+                double startTime = 18.757346055398383
+                rel target = </Root/Butterfly_Monarch_1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track6"
+        {
+            def RealityKitAction "Hide3"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "9A987D1F-59AE-432B-9145-002EB8147449"
+                double startTime = 17.281686991384706
+                rel target = </Root/Giant_Manta_Ray_old_ver>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "default"
+                }
+            }
+
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "17D05158-36AF-4FC2-816C-4505F25E7745"
+                double startTime = 18.955004115138333
+                rel target = </Root/Butterfly_Monarch>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track7"
+        {
+            reorder nameChildren = ["Orbit3", "Orbit32"]
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 19.921520537404785
+                uniform token info:id = "9A5E1DE9-3F48-4DFE-B22E-0757664DA847"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Capsule>
+                double startTime = 0
+                rel target = </Root/Giant_Manta_Ray_old_ver>
+            }
+        }
+
+        def RealityKitTrack "Track9"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 19.972826303996104
+                uniform token info:id = "F007907B-7D65-403E-9C0E-39F8527285BC"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Sea_Green_Turtle>
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_3>
+            }
+        }
+
+        def RealityKitTrack "Track10"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_3>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 3.3166666031883794
+                rel target = </Root/Butterfly_Monarch_3>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 6.643826293667166
+                rel target = </Root/Butterfly_Monarch_3>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation32"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 9.960492896855545
+                rel target = </Root/Butterfly_Monarch_3>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation322"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 13.277159500043926
+                rel target = </Root/Butterfly_Monarch_3>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3222"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "D15C9510-4738-4537-9DA8-CEC9C4B9DC72"
+                bool separateAnimatedValue = 1
+                double startTime = 16.60287053267516
+                rel target = </Root/Butterfly_Monarch_3>
+                float2 ui:nodegraph:node:pos = (80, 80)
+                int ui:nodegraph:node:stackingOrder = 4
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track11"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (0.6406103, 0.6850251, -0.34692812)
+                int blendLayer = 300
+                double duration = 19.901729185004353
+                uniform token info:id = "541ABA47-3D40-49F1-ADE1-05D306FC7846"
+                token orbitDirection = "counterClockwise"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Capsule>
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_1>
+            }
+        }
+
+        def RealityKitTrack "Track12"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (-0.09837058, 0.8593196, 0.50188947)
+                int blendLayer = 300
+                double duration = 19.93491713199756
+                uniform token info:id = "691131A3-3949-442E-95B7-D910E22467FB"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/Capsule>
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_2>
+            }
+        }
+
+        def RealityKitTrack "Track13"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_1>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 3.3166666031883794
+                rel target = </Root/Butterfly_Monarch_1>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 6.639105068661833
+                rel target = </Root/Butterfly_Monarch_1>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation4"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 9.955771671850215
+                rel target = </Root/Butterfly_Monarch_1>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation42"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 13.272438275038594
+                rel target = </Root/Butterfly_Monarch_1>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation422"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "834B374F-D421-4B1B-9148-4526C3BB9018"
+                bool separateAnimatedValue = 1
+                double startTime = 16.589104878226973
+                rel target = </Root/Butterfly_Monarch_1>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track14"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Butterfly_Monarch_2>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 3.3166666031883794
+                rel target = </Root/Butterfly_Monarch_2>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 6.633333206376759
+                rel target = </Root/Butterfly_Monarch_2>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation4"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 9.949999809565139
+                rel target = </Root/Butterfly_Monarch_2>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation42"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 13.266666412753517
+                rel target = </Root/Butterfly_Monarch_2>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation422"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "60F9BE11-F96E-467D-8592-195F67B08775"
+                bool separateAnimatedValue = 1
+                double startTime = 16.60892786514514
+                rel target = </Root/Butterfly_Monarch_2>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def Capsule "Capsule" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/Capsule/DefaultMaterial>
+        double radius = 0.1
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0.754655, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:surface.connect = </Root/Capsule/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def "SkyDome" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @SkyDome.usdz@
+    )
+    {
+        rel material:binding = </Root/Yellow> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Material "Yellow"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/Yellow/UsdPreviewSurface.outputs:surface>
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.57874745, 0.32151988, 0) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor = (0.6679979, 0.47512126, 0.2586011) (
+                colorSpace = "srgb_texture"
+            )
+            token outputs:surface
+        }
+    }
+
+    def "Butterfly_Monarch_3" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -3.2668476, 0)
+        }
+        references = @Butterfly_Monarch.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (-0.06258696, 0, -0.9980394, 0)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (1.6708667, 0.21686888, 1.624586)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        over "Materials"
+        {
+            over "legs"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "eyes"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
+    }
+
+    def "Butterfly_Monarch_1" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (-5.6741548, 0.2582797, 0.1762983)
+        }
+        references = @Butterfly_Monarch.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.9457747, 0.28536394, 0.1485551, 0.044822775)
+        float3 xformOp:scale = (0.0008, 0.0008, 0.0008)
+        float3 xformOp:translate = (-2.2518475, 2.2995806, -1.1075602)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        over "Materials"
+        {
+            over "legs"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "eyes"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
+    }
+
+    def "Butterfly_Monarch_2" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0.3563168, 0.3677194, 0.1330128)
+        }
+        references = @Butterfly_Monarch.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.967598, 0.16188753, 0.19111289, 0.03197484)
+        float3 xformOp:scale = (0.001, 0.001, 0.001)
+        float3 xformOp:translate = (2.0766492, 1.6392548, -1.1075602)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        over "Materials"
+        {
+            over "legs"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+
+            over "eyes"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+            }
+        }
     }
 }
 

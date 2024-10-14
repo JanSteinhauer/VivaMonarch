@@ -11,7 +11,7 @@ def Xform "Root" (
     }
 )
 {
-    reorder nameChildren = ["Group", "FCEB673B_6ACE_4A29_8A0E_A2DA59C6B9BB", "AmericaButterflyTimeline", "AmericaButterflyTimelineLoop"]
+    reorder nameChildren = ["Group", "AmericaButterflyTimeline", "AmericaButterflyTimelineLoop", "Material", "SkyDome", "Yellow", "DirectionalLight"]
     rel material:binding = None (
         bindMaterialAs = "weakerThanDescendants"
     )
@@ -29,7 +29,7 @@ def Xform "Root" (
     {
         quatf xformOp:orient = (0.98628557, 0, 0.16504759, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.5999932, 0.79118514, -1.9042878)
+        float3 xformOp:translate = (-0.6007688, 0.83372355, -1.2575523)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def "GridMaterial" (
@@ -49,12 +49,12 @@ def Xform "Root" (
         def "America" (
             active = true
             customData = {
-                float3 rotationEulerHint = (0, 0, 0)
+                float3 rotationEulerHint = (0, 0.2617994, 0)
             }
             references = @America.usdz@
         )
         {
-            quatf xformOp:orient = (1, 0, 0, 0)
+            quatf xformOp:orient = (0.9914449, 0, 0.13052619, 0)
             float3 xformOp:scale = (0.0029999996, 0.0029999996, 0.0029999996)
             float3 xformOp:translate = (0, 0.544676, -0.029346943)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -93,11 +93,11 @@ def Xform "Root" (
         def Xform "countries" (
             active = true
             customData = {
-                float3 rotationEulerHint = (0, 0, 0)
+                float3 rotationEulerHint = (0, 0.2617994, 0)
             }
         )
         {
-            quatf xformOp:orient = (1, 0, 0, 0)
+            quatf xformOp:orient = (0.9914449, 0, 0.13052619, 0)
             float3 xformOp:scale = (1, 1, 1)
             float3 xformOp:translate = (0, 0, 0)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -155,11 +155,11 @@ def Xform "Root" (
         def Xform "Group" (
             active = true
             customData = {
-                float3 rotationEulerHint = (1.5707963, 0, 0)
+                float3 rotationEulerHint = (1.5707964, 0.2617994, 1.5426817e-8)
             }
         )
         {
-            quatf xformOp:orient = (0.70710677, 0.7071067, 0, 0)
+            quatf xformOp:orient = (0.7010574, 0.7010574, 0.09229597, -0.09229595)
             float3 xformOp:scale = (0.099999964, 0.099999964, 0.099999964)
             float3 xformOp:translate = (-0.061344743, 0.69388807, 0.13443339)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -172,9 +172,10 @@ def Xform "Root" (
                 references = @Butterfly_Monarch.usdz@
             )
             {
+                reorder nameChildren = ["Materials", "SkinnedMeshes", "AnimationLibrary"]
                 quatf xformOp:orient = (0.999994, 0, 0, -0.003469885)
                 float3 xformOp:scale = (0.0010000002, 0.0010000002, 0.001)
-                float3 xformOp:translate = (-0.32820323, -0.09389926, -0.13230897)
+                float3 xformOp:translate = (0.1536956, 0.042139057, -0.13230993)
                 uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
                 over "SkinnedMeshes"
@@ -266,7 +267,7 @@ def Xform "Root" (
                 int blendLayer = 300
                 double duration = 2.870503521872571
                 uniform token info:id = "4D0E9921-8AD4-4115-A859-01E91FF13375"
-                float3 position = (0.5486594, 0.8275767, 1.9806634)
+                float3 position = (1.4364444, 0.82757384, 2.0644543)
                 quatf rotation = (0.999994, 0, 0, -0.003469885)
                 float3 scale = (0.0010000002, 0.0010000002, 0.001)
                 double startTime = 0
@@ -289,7 +290,7 @@ def Xform "Root" (
                 int blendLayer = 300
                 double duration = 2.0614458513395504
                 uniform token info:id = "9194AF39-F77E-4259-A2A6-6FCC20FAB83F"
-                float3 position = (0.85946, 0.88970095, 3.3471758)
+                float3 position = (1.1108748, 0.8896981, 3.3440182)
                 quatf rotation = (0.81905496, 0.0019907006, -0.5737045, -0.002841968)
                 float3 scale = (0.0010000002, 0.0010000002, 0.001)
                 double startTime = 2.870503521972571
@@ -312,7 +313,7 @@ def Xform "Root" (
                 int blendLayer = 300
                 double duration = 1.4389730627885702
                 uniform token info:id = "708B1194-BE92-4A19-9ECA-6743C1E99325"
-                float3 position = (-0.1652496, 0.90273005, 3.3163579)
+                float3 position = (0.12947036, 0.9027291, 2.971865)
                 quatf rotation = (0.00267189, -0.0034698735, 0.99999046, -0.000009402895)
                 float3 scale = (0.0010000002, 0.0010000002, 0.001)
                 double startTime = 4.931949373412122
@@ -335,7 +336,7 @@ def Xform "Root" (
                 int blendLayer = 300
                 double duration = 1.4372583841149646
                 uniform token info:id = "546D38B4-7BD7-44D5-81D2-F0B86588B20D"
-                float3 position = (-0.119242914, -0.09442378, -0.2023821)
+                float3 position = (0.10398198, -0.094427116, -0.20464517)
                 quatf rotation = (-0.99359685, 0.00039185848, -0.11293058, 0.0034477024)
                 float3 scale = (0.0010000002, 0.0010000002, 0.001)
                 double startTime = 8.532811348036498
@@ -358,7 +359,7 @@ def Xform "Root" (
                 int blendLayer = 300
                 double duration = 2.1618889116358058
                 uniform token info:id = "CAECBD66-C7C3-45F8-A931-E254CF1BC6D2"
-                float3 position = (-0.8676824, -0.06236649, -0.14109994)
+                float3 position = (-0.32644942, -0.062368397, -0.1965542)
                 quatf rotation = (-0.0194645, -0.0034692276, 0.99980444, 0.00006740812)
                 float3 scale = (0.0010000002, 0.0010000002, 0.001)
                 double startTime = 6.370922436300692
@@ -445,6 +446,80 @@ def Xform "Root" (
                 double loopCount = 0
                 double startTime = 0
                 rel timeline = </Root/AmericaButterflyTimeline>
+            }
+        }
+    }
+
+    def "SkyDome" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @SkyDome.usdz@
+    )
+    {
+        rel material:binding = </Root/Yellow> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (1.0454359, 0, -0.007233739)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Material "Material"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        prepend token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.14106272, 0.3271916, 0.091819756) (
+                colorSpace = "srgb_displayp3"
+            )
+            color3f inputs:emissiveColor = (0.27028093, 0.27028093, 0.27028093) (
+                colorSpace = "srgb_displayp3"
+            )
+            token outputs:surface
+        }
+    }
+
+    def Material "Yellow"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/Yellow/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.57874745, 0.32151988, 0) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor = (0.6679979, 0.47512126, 0.2586011) (
+                colorSpace = "srgb_texture"
+            )
+            token outputs:surface
+        }
+    }
+
+    def Xform "DirectionalLight" (
+        customData = {
+            float3 rotationEulerHint = (-0.065686084, 0.26179942, -2.8925284e-9)
+        }
+    )
+    {
+        quatf xformOp:orient = (0.9909102, -0.03255621, 0.1304558, 0.0042861053)
+        float3 xformOp:translate = (-0.27410984, 1.5479786, -0.4479817)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "DirectionalLight"
+        {
+            token info:id = "RealityKit.DirectionalLight"
+
+            def RealityKitStruct "Shadow"
+            {
             }
         }
     }

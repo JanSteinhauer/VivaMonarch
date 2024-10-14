@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var showImmersiveSpace = false
     @State private var showImmersiveSpaceGallery = false
     @State private var showImmersiveSpaceAmerica = false
+    @State private var showVieModelBeginning = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
 
@@ -177,6 +178,13 @@ struct ContentView: View {
         .onChange(of: showImmersiveSpaceAmerica) { _, newValue in
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceAmerica")
         }
+        .onChange(of: showVieModelBeginning) { _, newValue in
+            switchImmersiveSpace(newValue, id: "showVieModelBeginning")
+        }
+        .onAppear {
+               // Automatically trigger the immersive space for showVieModelBeginning
+               showVieModelBeginning = true
+           }
     }
 
     private func switchImmersiveSpace(_ newValue: Bool, id: String) {
