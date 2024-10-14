@@ -5,22 +5,38 @@
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "Root" (
+    customData = {
+        float3 rotationEulerHint = (0, 0, 0)
+    }
+)
 {
-    reorder nameChildren = ["Group", "FCEB673B_6ACE_4A29_8A0E_A2DA59C6B9BB"]
+    reorder nameChildren = ["Group", "FCEB673B_6ACE_4A29_8A0E_A2DA59C6B9BB", "AmericaButterflyTimeline", "AmericaButterflyTimelineLoop"]
     rel material:binding = None (
         bindMaterialAs = "weakerThanDescendants"
     )
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (-1.0454359, 0, 0.007233739)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
     def Xform "Group" (
         active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0.33161253, 0)
+        }
     )
     {
-        float3 xformOp:translate = (0, 0.4168148, -0.86449647)
+        quatf xformOp:orient = (0.98628557, 0, 0.16504759, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.5999932, 0.79118514, -1.9042878)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def "GridMaterial" (
             active = true
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
             references = @Materials/GridMaterial.usda@
         )
         {
@@ -32,17 +48,53 @@ def Xform "Root"
 
         def "America" (
             active = true
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
             references = @America.usdz@
         )
         {
             quatf xformOp:orient = (1, 0, 0, 0)
             float3 xformOp:scale = (0.0029999996, 0.0029999996, 0.0029999996)
-            float3 xformOp:translate = (0, 0.544676, -0.029346958)
+            float3 xformOp:translate = (0, 0.544676, -0.029346943)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "RCP_BehaviorsContainer"
+            {
+                rel behaviors = </Root/Group/America/OnAddedToScene>
+                uniform token info:id = "RCP.BehaviorsContainer"
+            }
+
+            def Preliminary_Behavior "OnAddedToScene"
+            {
+                rel actions = </Root/Group/America/OnAddedToScene/Action>
+                uniform bool exclusive
+                rel triggers = </Root/Group/America/OnAddedToScene/Trigger>
+
+                def Preliminary_Trigger "Trigger"
+                {
+                    rel affectedObjects = </Root/Group/America>
+                    token info:id = "SceneTransition"
+                }
+
+                def Preliminary_Action "Action"
+                {
+                    rel affectedObjects = </Root>
+                    rel animationLibraryKey = </Root/AmericaButterflyTimelineLoop>
+                    rel animationLibraryKeyOverrideKey = </Root/Group/America/OnAddedToScene/Trigger>
+                    token info:id = "PlayTimeline"
+                    int loops = 0
+                    int performCount = 1
+                    token type = "serial"
+                }
+            }
         }
 
         def Xform "countries" (
             active = true
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
         )
         {
             quatf xformOp:orient = (1, 0, 0, 0)
@@ -109,20 +161,20 @@ def Xform "Root"
         {
             quatf xformOp:orient = (0.70710677, 0.7071067, 0, 0)
             float3 xformOp:scale = (0.099999964, 0.099999964, 0.099999964)
-            float3 xformOp:translate = (-0.061344758, 0.69388807, 0.13443339)
+            float3 xformOp:translate = (-0.061344743, 0.69388807, 0.13443339)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
             def "Butterfly_Monarch" (
                 active = true
                 customData = {
-                    float3 rotationEulerHint = (0, 0, -0.006947033)
+                    float3 rotationEulerHint = (0, 0, -0.0069397986)
                 }
                 references = @Butterfly_Monarch.usdz@
             )
             {
                 quatf xformOp:orient = (0.999994, 0, 0, -0.003469885)
                 float3 xformOp:scale = (0.0010000002, 0.0010000002, 0.001)
-                float3 xformOp:translate = (0.06216654, -7.450581e-9, 0.013240747)
+                float3 xformOp:translate = (-0.32820323, -0.09389926, -0.13230897)
                 uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
                 over "SkinnedMeshes"
@@ -180,6 +232,17 @@ def Xform "Root"
                         }
                     }
                 }
+
+                def RealityKitComponent "AnimationLibrary"
+                {
+                    token info:id = "RealityKit.AnimationLibrary"
+
+                    def RealityKitAnimationFile "default_subtree_animation"
+                    {
+                        uniform bool looping = 1
+                        uniform string name = "default subtree animation"
+                    }
+                }
             }
         }
 
@@ -188,6 +251,201 @@ def Xform "Root"
             uniform token info:id = "RealityKit.ImageBasedLight"
             float intensityExponent = 8.212104
             bool isGlobalIBL = 0
+        }
+    }
+
+    def RealityKitTimeline "AmericaButterflyTimeline"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track3"]
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Transform_To", "Transform_To2", "Transform_To3", "Transform_To4", "Transform_To5"]
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 2.870503521872571
+                uniform token info:id = "4D0E9921-8AD4-4115-A859-01E91FF13375"
+                float3 position = (0.5486594, 0.8275767, 1.9806634)
+                quatf rotation = (0.999994, 0, 0, -0.003469885)
+                float3 scale = (0.0010000002, 0.0010000002, 0.001)
+                double startTime = 0
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To2"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 2.0614458513395504
+                uniform token info:id = "9194AF39-F77E-4259-A2A6-6FCC20FAB83F"
+                float3 position = (0.85946, 0.88970095, 3.3471758)
+                quatf rotation = (0.81905496, 0.0019907006, -0.5737045, -0.002841968)
+                float3 scale = (0.0010000002, 0.0010000002, 0.001)
+                double startTime = 2.870503521972571
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To3"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 1.4389730627885702
+                uniform token info:id = "708B1194-BE92-4A19-9ECA-6743C1E99325"
+                float3 position = (-0.1652496, 0.90273005, 3.3163579)
+                quatf rotation = (0.00267189, -0.0034698735, 0.99999046, -0.000009402895)
+                float3 scale = (0.0010000002, 0.0010000002, 0.001)
+                double startTime = 4.931949373412122
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To5"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 1.4372583841149646
+                uniform token info:id = "546D38B4-7BD7-44D5-81D2-F0B86588B20D"
+                float3 position = (-0.119242914, -0.09442378, -0.2023821)
+                quatf rotation = (-0.99359685, 0.00039185848, -0.11293058, 0.0034477024)
+                float3 scale = (0.0010000002, 0.0010000002, 0.001)
+                double startTime = 8.532811348036498
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To4"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 2.1618889116358058
+                uniform token info:id = "CAECBD66-C7C3-45F8-A931-E254CF1BC6D2"
+                float3 position = (-0.8676824, -0.06236649, -0.14109994)
+                quatf rotation = (-0.0194645, -0.0034692276, 0.99980444, 0.00006740812)
+                float3 scale = (0.0010000002, 0.0010000002, 0.001)
+                double startTime = 6.370922436300692
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "A5A75CA9-0AF7-4689-A81B-34973C5A7D23"
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation2"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "A5A75CA9-0AF7-4689-A81B-34973C5A7D23"
+                bool separateAnimatedValue = 1
+                double startTime = 3.316666603188379
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+
+            def RealityKitAction "Animation3"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 3.316666603088379
+                uniform token info:id = "A5A75CA9-0AF7-4689-A81B-34973C5A7D23"
+                bool separateAnimatedValue = 1
+                double startTime = 6.640238097110869
+                rel target = </Root/Group/Group/Butterfly_Monarch>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "AmericaButterflyTimelineLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 9.970069732151462
+                uniform token info:id = "921B68C3-B577-4259-87EA-E358D95D5C42"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/AmericaButterflyTimeline>
+            }
         }
     }
 }

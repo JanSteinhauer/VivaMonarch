@@ -19,22 +19,28 @@ struct ViewModelMap: View {
                     content.add(entity)
                     guard let butterfly = entity.findEntity(named: "Butterfly_Monarch") else { return }
                     if let butterfly = entity.findEntity(named: "Butterfly_Monarch") {
+                       
                         print("Butterfly found")
                     } else {
                         print("Butterfly not found")
                     }
+                    guard let map = entity.findEntity(named: "America") else { return }
+                    let animation = map.availableAnimations
+                    print("++++++++++++++++++++++++++++++++")
+                    print(animation)
+                    print("++++++++++++++++++++++++++++++++")
                     
-                    guard let animationResource = butterfly.availableAnimations.first else { return }
-                    let controller = butterfly.playAnimation(animationResource.repeat())
-                    controller.speed = Float.random(in: 1..<2.5)
-                    
-                    if let animationResource = butterfly.availableAnimations.first {
-                        let controller = butterfly.playAnimation(animationResource.repeat())
-                        controller.speed = Float.random(in: 1..<2.5)
-                    }
-                    
-                    // Apply continuous downward movement to the butterfly
-                    applyContinuousMovementAndRotation(to: butterfly)
+//                    guard let animationResource = butterfly.availableAnimations.first else { return }
+//                    let controller = butterfly.playAnimation(animationResource.repeat())
+//                    controller.speed = Float.random(in: 1..<2.5)
+//                    
+//                    if let animationResource = butterfly.availableAnimations.first {
+//                        let controller = butterfly.playAnimation(animationResource.repeat())
+//                        controller.speed = Float.random(in: 1..<2.5)
+//                    }
+//                    
+//                    // Apply continuous downward movement to the butterfly
+//                    applyContinuousMovementAndRotation(to: butterfly)
                 }
             }
         }
