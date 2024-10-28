@@ -17,6 +17,34 @@
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
         "Group",
+        "Group"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "Group"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "AmericaButterflyTimeline"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "Group",
         "GridMaterial"
       ],
       {
@@ -26,76 +54,18 @@
       [
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
-        "AmericaButterflyTimeline",
-        "Track"
+        "SkyDome"
       ],
       {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
-        "Group",
-        "Group",
-        "Butterfly_Monarch"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
-        "AmericaButterflyTimelineLoop",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
+        "disallowsFraming" : true,
+        "isExpanded" : false,
         "isLocked" : false
       },
       [
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
         "AmericaButterflyTimeline",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
-        "Group",
-        "Group"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
-        "Timeline",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
-        "Group"
+        "Track"
       ],
       {
         "isExpanded" : true,
@@ -114,15 +84,6 @@
       [
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
-        "AmericaButterflyTimelineLoop"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
-        "Root",
         "Group",
         "countries"
       ],
@@ -133,7 +94,16 @@
       [
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
-        "AmericaButterflyTimeline"
+        "AmericaButterflyTimelineLoop",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -142,11 +112,41 @@
       [
         "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
         "Root",
-        "SkyDome"
+        "Timeline",
+        "Track2"
       ],
       {
-        "disallowsFraming" : true,
-        "isExpanded" : false,
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "AmericaButterflyTimelineLoop"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "AmericaButterflyTimeline",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "6C2D1F13-EA25-4EA6-9676-BCB109C146EB",
+        "Root",
+        "Group",
+        "Group",
+        "Butterfly_Monarch"
+      ],
+      {
+        "isExpanded" : true,
         "isLocked" : false
       }
     ]
@@ -181,7 +181,47 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Timeline",
-        "Track5"
+        "Track14"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Timeline",
+        "Track13"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Timeline",
+        "Track7"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Giant_Manta_Ray_old_ver"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Timeline",
+        "Track12"
       ],
       {
         "isExpanded" : true,
@@ -209,58 +249,8 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Butterfly_Monarch"
-      ],
-      {
-        "disallowsFraming" : false,
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
         "Timeline",
-        "Track7"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
-        "Track10"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
-        "Track12"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
-        "Track11"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
-        "Track13"
+        "Track8"
       ],
       {
         "isExpanded" : true,
@@ -280,30 +270,10 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Timeline",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
         "Track3"
       ],
       {
         "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Giant_Manta_Ray_old_ver"
-      ],
-      {
-        "disallowsFraming" : false,
-        "isExpanded" : false,
         "isLocked" : false
       },
       [
@@ -318,9 +288,7 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "Timeline",
-        "Track8"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -328,7 +296,39 @@
       },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root"
+        "Root",
+        "Timeline",
+        "Track10"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Butterfly_Monarch"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Timeline",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "Timeline",
+        "Track5"
       ],
       {
         "isExpanded" : true,
@@ -348,7 +348,7 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Timeline",
-        "Track9"
+        "Track11"
       ],
       {
         "isExpanded" : true,
@@ -358,7 +358,7 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Timeline",
-        "Track14"
+        "Track9"
       ],
       {
         "isExpanded" : true,
@@ -380,8 +380,7 @@
     "objectMetadataList" : [
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root",
-        "GridMaterial"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -389,7 +388,8 @@
       },
       [
         "CB766F92-EE55-4A63-9401-E7B8C009764D",
-        "Root"
+        "Root",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,

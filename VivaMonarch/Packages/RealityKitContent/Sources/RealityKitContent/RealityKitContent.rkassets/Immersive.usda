@@ -20,10 +20,13 @@ def Xform "Root"
 
     def "Giant_Manta_Ray_old_ver" (
         active = true
+        customData = {
+            float3 rotationEulerHint = (0, 3.1415927, 0)
+        }
         references = @Giant_Manta_Ray_old_ver.usdz@
     )
     {
-        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        quatf xformOp:orient = (-4.371139e-8, 0, 1, 0)
         float3 xformOp:scale = (0.1, 0.1, 0.1)
         float3 xformOp:translate = (-2.6693442, 1.3411045e-7, -6.7055225e-8)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
