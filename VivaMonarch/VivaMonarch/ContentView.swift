@@ -55,73 +55,62 @@ struct ContentView: View {
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible())
-                ], spacing: 10) {  // Increased spacing between items for better visual separation
+                ], spacing: 10) {
                     VStack {
                         Toggle(isOn: $showImmersiveSpace) {
                             HStack {
-                                Text("🔲")
-                                    .font(.system(size: 40))  // Slightly larger emoji
-                                Text("Immersive Space")
-                                    .font(.system(size: 22))  // Larger text for clarity
-                                    .foregroundColor(.black)
+                                Image("Migration")
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
+                                    .cornerRadius(15)
                             }
-                            .padding()
-                            .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
                         }
                         .toggleStyle(.button)
+                        .buttonStyle(.plain) // Apply plain style here
+                       
                     }
+
                     .padding()
 
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceGallery) {
                             HStack {
-                                Text("🖼️")
-                                    .font(.system(size: 40))
-                                Text("Gallery")
-                                    .font(.system(size: 22))
-                                    .foregroundColor(.black)
+                                Image("PhotoGallery") // Ensure the image has a transparent background
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
                             }
-                          
-                            .padding()
                             .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
                         }
                         .toggleStyle(.button)
+                        .buttonStyle(.plain)
+                        
                     }
                     .padding()
 
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceAmerica) {
                             HStack {
-                                Text("🇺🇸")
-                                    .font(.system(size: 40))
-                                Text("Butterflies through America")
-                                    .font(.system(size: 22))
-                                    .foregroundColor(.black)
+                                Image("USButterflies") // Ensure the image has a transparent background
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
                             }
-                            .padding()
                             .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
                         }
                         .toggleStyle(.button)
+                        .buttonStyle(.plain)
                     }
                     .padding()
 
                     VStack {
                         Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
                             HStack {
-                                Text("📷")
-                                    .font(.system(size: 40))
-                                Text("Instagram")
-                                    .font(.system(size: 22))
-                                    .foregroundColor(.black)
+                                Image("Instagram") // Ensure the image has a transparent background
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
                             }
-                            .padding()
-                            .background(.gray.opacity(0.2))
                             .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
                         }
+                        .buttonStyle(.plain)
                     }
                     .padding()
 
@@ -130,36 +119,32 @@ struct ContentView: View {
                             playSound(named: "StartArea.wav")
                         }) {
                             HStack {
-                                Text("▶️")
-                                    .font(.system(size: 40))
-                                Text("Start Audioguide")
-                                    .font(.system(size: 22))
-                                    .foregroundColor(.black)
+                                Image("VideoGallery") // Ensure the image has a transparent background
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
                             }
-                            .padding()
                             .cornerRadius(15)
-                            .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
                         }
+                        .buttonStyle(.plain)
                     }
-                  
                 }
                 .padding()
                 .background(Color.clear)
 
                 // Aesthetic Slider Section
-                VStack(spacing: 10) {
-                    Slider(value: $sliderValue, in: -100...100, step: 1)
-                        .padding(.horizontal, 20)
-                        .accentColor(.blue) // Change slider color
-                        .frame(maxWidth: 300) // Limit the width of the slider
-                    Text("Current year: \(String(Int(sliderValue) + baseYear))")
-                        .padding(.top, 5)
-                        .font(.headline)
-                }
-                .padding()
-                .background(Color.gray.opacity(0.1)) // Background color for the slider section
-                .cornerRadius(10)
-                .padding(.top, 20)
+//                VStack(spacing: 10) {
+//                    Slider(value: $sliderValue, in: -100...100, step: 1)
+//                        .padding(.horizontal, 20)
+//                        .accentColor(.blue)
+//                        .frame(maxWidth: 300)
+//                    Text("Current year: \(String(Int(sliderValue) + baseYear))")
+//                        .padding(.top, 5)
+//                        .font(.headline)
+//                }
+//                .padding()
+//                .background(Color.gray.opacity(0.1))
+//                .cornerRadius(10)
+//                .padding(.top, 20)
             }
             .typeText(
                 text: $model.titleText,
@@ -203,6 +188,16 @@ struct ContentView: View {
         }
     }
 }
+
+
+struct NoHoverButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0) // Optional: slight scale effect on press
+            .background(Color.clear) // Ensure no background is added
+    }
+}
+
 
 #Preview {
     ContentView(viewModel: ViewModel())
