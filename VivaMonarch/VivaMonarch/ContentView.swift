@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var currentImmersiveSpace: String? = nil
     @State private var showImmersiveSpace = false
     @State private var showImmersiveSpaceGallery = false
+    @State private var showImmersiveSpaceVideoGallery = false
     @State private var showImmersiveSpaceAmerica = false
     @State private var showVieModelBeginning = false
     @State private var sliderValue: Double = 0 // Slider state variable
@@ -115,9 +116,19 @@ struct ContentView: View {
                     .padding()
 
                     VStack {
-                        Button(action: {
-                            playSound(named: "StartArea.wav")
-                        }) {
+//                        Button(action: {
+//                            playSound(named: "StartArea.wav")
+//                        }) {
+//                            HStack {
+//                                Image("VideoGallery") // Ensure the image has a transparent background
+//                                    .resizable()
+//                                    .frame(width: 140, height: 140)
+//                            }
+//                            .cornerRadius(15)
+//                        }
+//                        .buttonStyle(.plain)
+                        
+                        Toggle(isOn: $showImmersiveSpaceVideoGallery) {
                             HStack {
                                 Image("VideoGallery") // Ensure the image has a transparent background
                                     .resizable()
@@ -125,6 +136,7 @@ struct ContentView: View {
                             }
                             .cornerRadius(15)
                         }
+                        .toggleStyle(.button)
                         .buttonStyle(.plain)
                     }
                 }
@@ -159,6 +171,9 @@ struct ContentView: View {
         }
         .onChange(of: showImmersiveSpaceGallery) { _, newValue in
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceGallery")
+        }
+        .onChange(of: showImmersiveSpaceVideoGallery) { _, newValue in
+            switchImmersiveSpace(newValue, id: "showImmersiveSpaceVideoGallery")
         }
         .onChange(of: showImmersiveSpaceAmerica) { _, newValue in
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceAmerica")
