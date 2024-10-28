@@ -1,19 +1,20 @@
 import SwiftUI
 import RealityKit
+import simd
 
 @Observable
 class Gallery {
 
-    private let planeSize = CGSize(width: 0.32, height: 0.18)
+    private let planeSize = CGSize(width: 0.32 * 2, height: 0.18 * 2) // Scaled by a factor of 2
     private let maxPlaneSize = CGSize(width: 3.0, height: 2.0)
 
     private var contentEntity = Entity()
-    private var boardPlanes: [ModelEntity] = []
     private var images: [MaterialParameters.Texture] = []
     private var sorted = true
 
     func setupContentEntity() -> Entity {
 
+        // Load images
         for i in 1..<26 {
             let name = "laputa\(String(format: "%03d", i))"
             if let texture = try? TextureResource.load(named: name) {
@@ -21,7 +22,12 @@ class Gallery {
             }
         }
 
+        // Setup the content
         setup()
+
+        // Add skydome
+        addSkydome()
+
         return contentEntity
     }
 
@@ -39,65 +45,78 @@ class Gallery {
 
     private func setup() {
 
-        for i in 0..<3 {
-            let boardPlane = ModelEntity(
-                mesh: .generatePlane(width: 3, height: 2),
-                materials: [SimpleMaterial(color: .clear, isMetallic: false)]
-            )
+        let totalImages = images.count
+        let radius: Float = 3.0  // Adjust the radius as needed
 
-            boardPlane.position = SIMD3<Float>(x: 0, y: 2, z: -0.5 - 0.1 * Float(i + 1))
+        for i in 0..<totalImages {
+            let image = images[i]
 
-            contentEntity.addChild(boardPlane)
-            boardPlanes.append(boardPlane)
+            // Calculate the angle for even distribution around the circle
+            let angle = 2 * Float.pi * Float(i) / Float(totalImages)
 
-            addChildEntities(boardPlane: boardPlane)
+            // Calculate the position on the circle
+            let x = radius * cos(angle)
+            let z = radius * sin(angle)
+            let y: Float = 1.6  // Set Y coordinate to 1.6 meters
+
+            let position = SIMD3<Float>(x, y, z)
+
+            // Create the image plane entity
+            let entity = makePlane(name: "", position: position, texture: image)
+
+            // Rotate the entity to face the origin
+            let direction = normalize(SIMD3<Float>(-x, 0, -z)) // Only consider x and z for rotation
+            let rotation = simd_quatf(from: [0, 0, 1], to: direction)
+            entity.orientation = rotation
+
+            // Add the entity to the content entity
+            contentEntity.addChild(entity)
         }
     }
 
-    private func addChildEntities(boardPlane: ModelEntity) {
+    private func makePlane(name: String, position: SIMD3<Float>, texture: MaterialParameters.Texture) -> ModelEntity {
 
-        var i: Int = 0
-
-        for image in images.shuffled().prefix(30) {
-
-            let divisionResult = i.quotientAndRemainder(dividingBy: 5)
-
-            let x: Float = Float(divisionResult.remainder) * 0.4 - 0.75
-            let y: Float = Float(divisionResult.quotient) * 0.25 - 0.5
-            let z: Float = boardPlane.position.z + Float(i) * 0.0001
-
-            let entity = makePlane(name: "", posision: SIMD3<Float>(x: x, y: y, z: z), texture: image)
-
-            boardPlane.addChild(entity)
-
-            i += 1
-        }
-    }
-
-    private func makePlane(name: String, posision: SIMD3<Float>, texture: MaterialParameters.Texture) -> ModelEntity {
-
-        var material = SimpleMaterial()
+        var material = UnlitMaterial()
         material.color = .init(texture: texture)
 
         let entity = ModelEntity(
-            mesh: .generatePlane(width: 0.32, height: 0.18, cornerRadius: 0.0),
+            mesh: .generatePlane(width: Float(planeSize.width), height: Float(planeSize.height), cornerRadius: 0.0),
             materials: [material],
-            collisionShape: .generateBox(width: 0.32, height: 0.18, depth: 0.1),
+            collisionShape: .generateBox(width: Float(planeSize.width), height: Float(planeSize.height), depth: 0.1),
             mass: 0.0
         )
 
         entity.name = name
-        entity.position = posision
+        entity.position = position
         entity.components.set(InputTargetComponent(allowedInputTypes: .indirect))
 
         return entity
     }
 
-    private func move(entity: Entity, position: SIMD2<Float>) {
+    private func addSkydome() {
+        // Create a large sphere to act as the skydome
+        let sphere = ModelEntity(mesh: .generateSphere(radius: 50))
+
+        // Create an orange material
+        var material = UnlitMaterial()
+        material.color = .init(tint: .orange)
+
+        sphere.model?.materials = [material]
+
+        // Flip the sphere inside out by scaling it negatively on all axes
+        sphere.scale = SIMD3<Float>(-1, -1, -1)
+
+        sphere.position = SIMD3<Float>(0, 0, 0)
+
+        // Add the skydome to the content entity
+        contentEntity.addChild(sphere)
+    }
+
+    private func move(entity: Entity, position: SIMD3<Float>) {
         let move = FromToByAnimation<Transform>(
             name: "move",
             from: .init(scale: .init(repeating: 1), translation: entity.position),
-            to: .init(scale: .init(repeating: 1), translation: .init(x: position.x, y: position.y, z: entity.position.z)),
+            to: .init(scale: .init(repeating: 1), translation: position),
             duration: 2.0,
             timing: .linear,
             bindTarget: .transform
@@ -107,61 +126,49 @@ class Gallery {
     }
 
     private func randomSetChildPositions() {
-        let size = CGSize(width: planeSize.width * 1.2, height: planeSize.height * 1.2)
-        for boardPlane in boardPlanes {
-            let newPoints = randomPoints(count: boardPlane.children.count, size: size)
-            for i in 0..<boardPlane.children.count {
-                let entity = boardPlane.children[i]
-                move(entity: entity, position: newPoints[i])
-            }
+        let totalImages = contentEntity.children.count
+        let radius: Float = 3.0  // Same radius as before
+
+        var usedAngles = Set<Float>()
+
+        for entity in contentEntity.children {
+            var angle: Float
+            repeat {
+                angle = Float.random(in: 0..<2*Float.pi)
+            } while usedAngles.contains(angle)
+            usedAngles.insert(angle)
+
+            let x = radius * cos(angle)
+            let z = radius * sin(angle)
+            let y: Float = 1.6
+
+            let position = SIMD3<Float>(x, y, z)
+            move(entity: entity, position: position)
+
+            // Rotate the entity to face the origin
+            let direction = normalize(SIMD3<Float>(-x, 0, -z))
+            let rotation = simd_quatf(from: [0, 0, 1], to: direction)
+            entity.orientation = rotation
         }
     }
 
     private func resetChildPositions() {
-        for boardPlane in boardPlanes {
-            var i: Int = 0
-            for entity in boardPlane.children {
-                let divisionResult = i.quotientAndRemainder(dividingBy: 5)
-                let x: Float = Float(divisionResult.remainder) * 0.4 - 0.75
-                let y: Float = Float(divisionResult.quotient) * 0.25 - 0.5
-                move(entity: entity, position: SIMD2<Float>(x, y))
-                i += 1
-            }
-        }
-    }
+        let totalImages = contentEntity.children.count
+        let radius: Float = 3.0  // Same radius as before
 
-    private func randomPoints(count: Int, size: CGSize) -> [SIMD2<Float>] {
-        var ret: [SIMD2<Float>] = []
-        while ret.count < count {
-            if let point = randomPoint(size: size, positions: ret) {
-                ret.append(point)
-            }
-        }
-        return ret
-    }
+        for (i, entity) in contentEntity.children.enumerated() {
+            let angle = 2 * Float.pi * Float(i) / Float(totalImages)
+            let x = radius * cos(angle)
+            let z = radius * sin(angle)
+            let y: Float = 1.6
 
-    private func randomPoint(size: CGSize, positions: [SIMD2<Float>]) -> SIMD2<Float>? {
-        for _ in 0..<5000 {
-            let x = CGFloat.random(in: -maxPlaneSize.width...(maxPlaneSize.width / 2))
-            let y = CGFloat.random(in: -maxPlaneSize.height...(maxPlaneSize.height / 2))
-            let frame = CGRect(x: CGFloat(x), y: CGFloat(y), width: size.width, height: size.height)
+            let position = SIMD3<Float>(x, y, z)
+            move(entity: entity, position: position)
 
-            if positions.isEmpty {
-                return SIMD2<Float>(Float(x), Float(y))
-            } else {
-                var intersects = false
-                for position in positions {
-                    let f = CGRect(x: CGFloat(position.x), y: CGFloat(position.y), width: size.width, height: size.height)
-                    if f.intersects(frame) {
-                        intersects = true
-                    }
-                }
-                if !intersects {
-                    return SIMD2<Float>(Float(frame.minX), Float(frame.minY))
-                }
-            }
+            // Rotate the entity to face the origin
+            let direction = normalize(SIMD3<Float>(-x, 0, -z))
+            let rotation = simd_quatf(from: [0, 0, 1], to: direction)
+            entity.orientation = rotation
         }
-        return nil
     }
 }
-
