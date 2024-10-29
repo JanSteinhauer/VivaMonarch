@@ -4,115 +4,89 @@
 //
 //  Created by Jan Steinhauer on 4/19/24.
 //
+
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
 struct ViewModelMap: View {
-    //    @State private var isMovingForward = true
+    @State private var canadaEntity: Entity?
+    static var canadaEntityText: Entity?
+    @State var candaTriggert = false
     
     var body: some View {
         ZStack {
             RealityView { content in
-                
-                if let entity = try? await Entity(named: "AmericaMap", in: realityKitContentBundle){
-                    content.add(entity)
-                    guard let butterfly = entity.findEntity(named: "Butterfly_Monarch") else { return }
-                    if let butterfly = entity.findEntity(named: "Butterfly_Monarch") {
-                       
-                        print("Butterfly found")
-                    } else {
-                        print("Butterfly not found")
-                    }
-                    guard let map = entity.findEntity(named: "America") else { return }
-                    let animation = map.availableAnimations
-                    print("++++++++++++++++++++++++++++++++")
-                    print(animation)
-                    print("++++++++++++++++++++++++++++++++")
+                print("Loading AmericaMap entity...")
+                if let americaMapEntity = try? await Entity(named: "AmericaMap", in: realityKitContentBundle) {
+                    print("AmericaMap entity successfully loaded.")
+                    content.add(americaMapEntity)
                     
-//                    guard let animationResource = butterfly.availableAnimations.first else { return }
-//                    let controller = butterfly.playAnimation(animationResource.repeat())
-//                    controller.speed = Float.random(in: 1..<2.5)
-//                    
-//                    if let animationResource = butterfly.availableAnimations.first {
-//                        let controller = butterfly.playAnimation(animationResource.repeat())
-//                        controller.speed = Float.random(in: 1..<2.5)
-//                    }
-//                    
-//                    // Apply continuous downward movement to the butterfly
-//                    applyContinuousMovementAndRotation(to: butterfly)
+                    // Enable collision detection for the entire entity hierarchy
+                    americaMapEntity.generateCollisionShapes(recursive: true)
+                    print("Collision shapes generated for AmericaMap entity.")
+                    
+                    // Find the "canada" entity within the "AmericaMap"
+                    if let canada = americaMapEntity.findEntity(named: "canada") {
+                        print("Canada entity found within AmericaMap.")
+                        DispatchQueue.main.async {
+                            self.canadaEntity = canada
+                            ViewModelMap.canadaEntityText = canada
+                            print("Canada entity assigned to canadaEntity state.")
+                        }
+                    } else {
+                        print("Canada entity not found within AmericaMap.")
+                    }
+                } else {
+                    print("Failed to load AmericaMap entity.")
                 }
             }
-        }
-    }
-    
-    //    // Function to move the butterfly downwards
-    //      private func moveButterflyDownwards(_ entity: Entity) {
-    //          // Use a timer to periodically update the position
-    //
-    //
-    //          Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-    //              // Downward movement offset
-    //              let zOffset = self.isMovingForward ? 0.02 : -0.02
-    //              let yOffset = self.isMovingForward ? 0.01 : -0.01
-    //              // Update the entity's position
-    //              var transform = entity.transform
-    //              transform.translation.z += Float(zOffset)
-    //              transform.translation.y += Float(yOffset)
-    //              entity.transform = transform
-    //
-    //              // Optionally, stop the timer if the butterfly reaches a certain limit (not shown)
-    //          }
-    //      }
-    //  }
-    
-    private func applyContinuousMovementAndRotation(to entity: Entity) {
-        var isMovingForward = true
-        let timer = Timer.scheduledTimer(withTimeInterval: 6.0, repeats: true) { _ in
-            isMovingForward.toggle()
-            applyRotation(to: entity)
-        }
-        
-        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
-            moveButterfly(entity, isMovingForward: isMovingForward)
-        }
-    }
-    
-    // Function to apply rotation to the entity
-    private func applyRotation(to entity: Entity) {
-        let rotationAngle = simd_quatf(angle: .pi, axis: [-1, 0, 0])  // 180 degrees rotation around the Y-axis
-        entity.move(to: Transform(scale: entity.transform.scale, rotation: rotationAngle * entity.transform.rotation, translation: entity.transform.translation), relativeTo: entity.parent, duration: 0.5, timingFunction: .easeInOut)
-    }
-    
-    // Function to move the butterfly
-    private func moveButterfly(_ entity: Entity, isMovingForward: Bool) {
-        let zOffset: Float = isMovingForward ? 0.02 : -0.02
-        let yOffset: Float = isMovingForward ? 0.01 : -0.01
-        
-        var transform = entity.transform
-        transform.translation.z += zOffset
-        transform.translation.y += yOffset
-        entity.transform = transform
-    }
-    private func applyRandomMovement(to entity: Entity) {
-        // Define the movement range (adjust as needed)
-        let range: ClosedRange<Float> = -1.0...1.0
-        
-        // Create a timer to update the position at regular intervals
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            // Randomize position offsets
-            let xOffset = Float.random(in: range) * 0.1
-            let yOffset = Float.random(in: range) * 0.1
-            let zOffset = Float.random(in: range) * 0.1
-            
-            // Apply the position offsets
-            var transform = entity.transform
-            transform.translation += SIMD3(xOffset, yOffset, zOffset)
-            entity.move(to: transform, relativeTo: entity.parent, duration: 1.0, timingFunction: .linear)
+            .modifier(ConditionalGestureModifier(canadaEntity: canadaEntity))
         }
     }
 }
 
-//#Preview{
-//    ViewModelMap()
-//}
+
+struct ConditionalGestureModifier: ViewModifier {
+    let canadaEntity: Entity?
+    
+    func body(content: Content) -> some View {
+        if let canadaEntity = canadaEntity {
+            
+            content.gesture(
+                SpatialTapGesture()
+                    .targetedToEntity(canadaEntity)
+                    .onEnded { value in
+                        // Since value.entity is non-optional, no need for 'if let'
+                        let tappedEntity = value.entity
+                        print("Entity tapped: \(tappedEntity.name)")
+
+                        // Safely unwrap 'canadaEntity'
+                        if tappedEntity == canadaEntity {
+                            // Create a text entity with the description of Canada
+                            let description = "Canada is a country in North America known for its vast landscapes and multicultural communities."
+                            let textMesh = MeshResource.generateText(
+                                description,
+                                extrusionDepth: 0.01,
+                                font: .systemFont(ofSize: 0.05),
+                                containerFrame: .zero,
+                                alignment: .center,
+                                lineBreakMode: .byWordWrapping
+                            )
+                            let material = SimpleMaterial(color: .white, isMetallic: false)
+                            let textEntity = ModelEntity(mesh: textMesh, materials: [material])
+                            
+                            // Position the text entity next to the "canada" entity
+                            textEntity.position = tappedEntity.position + SIMD3<Float>(0.1, 0, 0)
+                            
+                            // Add the text entity to the parent entity
+                            tappedEntity.parent?.addChild(textEntity)
+                        }
+                    }
+            )
+        } else {
+            content
+        }
+    }
+}
+
