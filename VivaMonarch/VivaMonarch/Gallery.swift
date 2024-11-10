@@ -15,7 +15,7 @@ class Gallery {
     func setupContentEntity() -> Entity {
 
         // Load images
-        for i in 1..<26 {
+        for i in 1..<13 {
             let name = "laputa\(String(format: "%03d", i))"
             if let texture = try? TextureResource.load(named: name) {
                 images.append(MaterialParameters.Texture(texture))
