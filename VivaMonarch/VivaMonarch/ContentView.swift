@@ -6,6 +6,7 @@ enum ChartType {
     case none
     case population
     case migration
+    case butterflyhub
 }
 
 
@@ -92,10 +93,17 @@ struct ContentView: View {
                             
                         case .migration:
                             Text("Migration Distance by Region")
-                                .font(.headline)
+                                .font(.system(size: 40))
                                 .padding(.top)
                             
                             MigrationChartView()
+                                .frame(height: 300)
+                        case .butterflyhub:
+                            Text("Monarch Butterfly Population Over Years")
+                                .font(.system(size: 40))
+                                .padding(.top)
+                            
+                            PopulationChartView()
                                 .frame(height: 300)
                             
                         default:
@@ -182,6 +190,28 @@ struct ContentView: View {
                                         .resizable()
                                         .frame(width: 140, height: 140)
                                         .cornerRadius(15)
+                                }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+                        
+                        VStack {
+                            Button(action: {
+                                stopAudio()
+                                selectedChart = .butterflyhub
+                                viewModel.urlString = MonarchURL
+                                Task {
+                                    await openCommonImmersiveSpace()
+                                    playSound(named: "AmbientSounds.mp3")
+                                }
+                            }) {
+                                HStack {
+                                    Image("Instagram")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                        .cornerRadius(15)
+                                    Text("start")
                                 }
                             }
                             .buttonStyle(.plain)

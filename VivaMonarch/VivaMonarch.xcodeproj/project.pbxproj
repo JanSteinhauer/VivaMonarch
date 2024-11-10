@@ -36,6 +36,7 @@
 		EBEFBEAC2CD01B70001DA80F /* VideoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFBEAB2CD01B70001DA80F /* VideoGallery.swift */; };
 		EBF195622CE12240008B33B4 /* PopulationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195612CE1223F008B33B4 /* PopulationChartView.swift */; };
 		EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195632CE1236A008B33B4 /* MigrationChartView.swift */; };
+		EBF195672CE13FF9008B33B4 /* AmbientSounds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBF195662CE13FF9008B33B4 /* AmbientSounds.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		EBEFBEAB2CD01B70001DA80F /* VideoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGallery.swift; sourceTree = "<group>"; };
 		EBF195612CE1223F008B33B4 /* PopulationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationChartView.swift; sourceTree = "<group>"; };
 		EBF195632CE1236A008B33B4 /* MigrationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationChartView.swift; sourceTree = "<group>"; };
+		EBF195662CE13FF9008B33B4 /* AmbientSounds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AmbientSounds.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				EBCBF9012CE0425700FE1216 /* USA.wav */,
 				EBCBF8FB2CE0322600FE1216 /* Animal.wav */,
 				EBCBF9052CE046ED00FE1216 /* Mexico.wav */,
+				EBF195662CE13FF9008B33B4 /* AmbientSounds.mp3 */,
 				EBCBF8FF2CE0421600FE1216 /* Canada.wav */,
 			);
 			path = Audio;
@@ -247,6 +250,7 @@
 				EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */,
 				EBCBF9062CE046ED00FE1216 /* Mexico.wav in Resources */,
 				EB0390C22BB997A8004423E0 /* Preview Assets.xcassets in Resources */,
+				EBF195672CE13FF9008B33B4 /* AmbientSounds.mp3 in Resources */,
 				EB0390BD2BB997A6004423E0 /* ImageBasedLighting.skybox in Resources */,
 				EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */,
 				EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */,
