@@ -1,11 +1,16 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
+import AVFoundation
 
 struct ViewModelMap: View {
     @State private var canadaEntity: Entity?
     @State private var usEntity: Entity?
     @State private var mexicoEntity: Entity?
+    
+    @State private var currentlyPlayingEntity: Entity?
+    @StateObject private var audioManager = AudioManager()
+
 
     var body: some View {
         ZStack {
@@ -55,7 +60,16 @@ struct ViewModelMap: View {
                     print("Failed to load AmericaMap entity.")
                 }
             }
-            .modifier(ConditionalGestureModifier(canadaEntity: canadaEntity, usEntity: usEntity, mexicoEntity: mexicoEntity))
+            .modifier(ConditionalGestureModifier(
+                            canadaEntity: canadaEntity,
+                            usEntity: usEntity,
+                            mexicoEntity: mexicoEntity,
+                            currentlyPlayingEntity: $currentlyPlayingEntity,
+                            audioManager: audioManager
+                        ))
+            .onAppear {
+                           audioManager.playSound(named: "AmericaGeneral.wav")
+                       }
         }
     }
 }
@@ -70,6 +84,11 @@ struct ConditionalGestureModifier: ViewModifier {
     let usEntity: Entity?
     let mexicoEntity: Entity?
     
+    @Binding var currentlyPlayingEntity: Entity?
+    
+    @State private var audioPlayer: AVAudioPlayer?
+    @ObservedObject var audioManager: AudioManager
+    
     func body(content: Content) -> some View {
         content.gesture(
             SpatialTapGesture()
@@ -79,23 +98,37 @@ struct ConditionalGestureModifier: ViewModifier {
                     print("Entity tapped: \(tappedEntity.name)")
                     
                     var description: String?
+                    var soundFileName: String?
                     var countryEntity: Entity?
                     
                     if let canadaEntity = canadaEntity, tappedEntity == canadaEntity {
                         description = "Canada’s landscapes mark the start of the monarch butterfly migration south."
+                        soundFileName = "Canada.wav"
                         countryEntity = canadaEntity
                     } else if let usEntity = usEntity, tappedEntity == usEntity {
                         description = "The U.S. provides a key route and breeding ground for migrating monarchs."
+                        soundFileName = "USA.wav"
                         countryEntity = usEntity
                     } else if let mexicoEntity = mexicoEntity, tappedEntity == mexicoEntity {
                         description = "Mexico’s forests host monarchs each winter, completing their migration."
+                        soundFileName = "Mexico.wav"
                         countryEntity = mexicoEntity
                     } else {
                         // Not an entity we're interested in
                         return
                     }
                     
-                    guard let description = description, let countryEntity = countryEntity else { return }
+                    guard let description = description,
+                          let soundFileName = soundFileName,
+                          let countryEntity = countryEntity else { return }
+                    
+                    
+                    audioManager.stopAudio()
+                    
+                    // Play the audio for the tapped country entity
+                    audioManager.playSound(named: soundFileName)
+                    currentlyPlayingEntity = countryEntity
+                    
                     
                     // Check if the text entity is already displayed
                     if let textComponent = countryEntity.components[TextComponent.self] as? TextComponent {
@@ -160,5 +193,51 @@ struct ConditionalGestureModifier: ViewModifier {
                     }
                 }
         )
+    }
+    
+    private func playSound(named soundFileName: String) {
+            guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
+            let url = URL(fileURLWithPath: path)
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+            } catch {
+                print("Could not load file \(soundFileName)")
+            }
+        }
+
+        // Function to stop audio playback
+        private func stopAudio() {
+            audioPlayer?.stop()
+            audioPlayer = nil
+        }
+}
+
+
+
+class AudioManager: ObservableObject {
+    @Published var audioPlayer: AVAudioPlayer?
+    
+    func playSound(named soundFileName: String) {
+        guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else {
+            print("Sound file not found: \(soundFileName)")
+            return
+        }
+        let url = URL(fileURLWithPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+            print("Playing sound: \(soundFileName)")
+        } catch {
+            print("Could not load file \(soundFileName): \(error)")
+        }
+    }
+    
+    func stopAudio() {
+        audioPlayer?.stop()
+        audioPlayer = nil
+        print("Audio stopped.")
     }
 }

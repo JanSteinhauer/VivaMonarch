@@ -25,6 +25,10 @@
 		EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */; };
 		EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8F92CE0301100FE1216 /* Introduction.wav */; };
 		EBCBF8FC2CE0322600FE1216 /* Animal.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8FB2CE0322600FE1216 /* Animal.wav */; };
+		EBCBF8FE2CE03DC500FE1216 /* AmericaGeneral.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8FD2CE03DC500FE1216 /* AmericaGeneral.wav */; };
+		EBCBF9002CE0421600FE1216 /* Canada.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8FF2CE0421600FE1216 /* Canada.wav */; };
+		EBCBF9022CE0425700FE1216 /* USA.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF9012CE0425700FE1216 /* USA.wav */; };
+		EBCBF9062CE046ED00FE1216 /* Mexico.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF9052CE046ED00FE1216 /* Mexico.wav */; };
 		EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B1E2BC86E08000B003D /* StartArea.wav */; };
 		EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B202BC86ECD000B003D /* monarch.usdz */; };
 		EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */; };
@@ -53,6 +57,10 @@
 		EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBeginning.swift; sourceTree = "<group>"; };
 		EBCBF8F92CE0301100FE1216 /* Introduction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Introduction.wav; sourceTree = "<group>"; };
 		EBCBF8FB2CE0322600FE1216 /* Animal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Animal.wav; sourceTree = "<group>"; };
+		EBCBF8FD2CE03DC500FE1216 /* AmericaGeneral.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AmericaGeneral.wav; sourceTree = "<group>"; };
+		EBCBF8FF2CE0421600FE1216 /* Canada.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Canada.wav; sourceTree = "<group>"; };
+		EBCBF9012CE0425700FE1216 /* USA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = USA.wav; sourceTree = "<group>"; };
+		EBCBF9052CE046ED00FE1216 /* Mexico.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Mexico.wav; sourceTree = "<group>"; };
 		EBCE0B1E2BC86E08000B003D /* StartArea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StartArea.wav; sourceTree = "<group>"; };
 		EBCE0B202BC86ECD000B003D /* monarch.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = monarch.usdz; sourceTree = "<group>"; };
 		EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMap.swift; sourceTree = "<group>"; };
@@ -145,8 +153,12 @@
 		EBCBF8F62CE02DC900FE1216 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				EBCBF8FD2CE03DC500FE1216 /* AmericaGeneral.wav */,
 				EBCBF8F92CE0301100FE1216 /* Introduction.wav */,
+				EBCBF9012CE0425700FE1216 /* USA.wav */,
 				EBCBF8FB2CE0322600FE1216 /* Animal.wav */,
+				EBCBF9052CE046ED00FE1216 /* Mexico.wav */,
+				EBCBF8FF2CE0421600FE1216 /* Canada.wav */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -213,9 +225,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBCBF8FC2CE0322600FE1216 /* Animal.wav in Resources */,
+				EBCBF8FE2CE03DC500FE1216 /* AmericaGeneral.wav in Resources */,
+				EBCBF9002CE0421600FE1216 /* Canada.wav in Resources */,
 				EB0390BF2BB997A8004423E0 /* Assets.xcassets in Resources */,
 				EB0390CD2BB99B32004423E0 /* Sphere.usda in Resources */,
+				EBCBF9022CE0425700FE1216 /* USA.wav in Resources */,
 				EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */,
+				EBCBF9062CE046ED00FE1216 /* Mexico.wav in Resources */,
 				EB0390C22BB997A8004423E0 /* Preview Assets.xcassets in Resources */,
 				EB0390BD2BB997A6004423E0 /* ImageBasedLighting.skybox in Resources */,
 				EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */,

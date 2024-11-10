@@ -13,18 +13,6 @@ import AVFAudio
 struct VieModelBeginning: View {
     
     @State private var audioPlayer: AVAudioPlayer?
-
-    private func playSound(named soundFileName: String) {
-        guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
-        let url = URL(fileURLWithPath: path)
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-        } catch {
-            print("Could not load file")
-        }
-    }
     
     var body: some View {
         ZStack {
