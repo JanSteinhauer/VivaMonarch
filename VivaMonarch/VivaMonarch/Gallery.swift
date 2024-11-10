@@ -99,7 +99,7 @@ class Gallery {
 
         // Create an orange material
         var material = UnlitMaterial()
-        material.color = .init(tint: .orange)
+        material.color = .init(tint: .init(red: 170/255.0, green: 121/255.0, blue: 66/255.0, alpha: 1.0))
 
         sphere.model?.materials = [material]
 
