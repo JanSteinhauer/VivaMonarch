@@ -58,47 +58,47 @@ struct ContentView: View {
     }
     
     let monarch_population = [
-        PopulationData(year: 2016, population: 84000000),  // 4.0 hectares
-        PopulationData(year: 2017, population: 96600000),  // 4.6 hectares
-        PopulationData(year: 2018, population: 186900000), // 8.9 hectares
-        PopulationData(year: 2019, population: 141400000), // 6.7 hectares
-        PopulationData(year: 2020, population: 99300000),  // 4.7 hectares
-        PopulationData(year: 2021, population: 59640000),  // 2.84 hectares
-        PopulationData(year: 2022, population: 58800000),  // 2.8 hectares
-        PopulationData(year: 2023, population: 18900000)   // 0.9 hectares
+        PopulationData(year: 2016, population: 84000000),
+        PopulationData(year: 2017, population: 96600000),
+        PopulationData(year: 2018, population: 186900000),
+        PopulationData(year: 2019, population: 141400000),
+        PopulationData(year: 2020, population: 99300000),
+        PopulationData(year: 2021, population: 59640000),
+        PopulationData(year: 2022, population: 58800000),
+        PopulationData(year: 2023, population: 18900000)
     ]
 
     let whale_population = [
-        PopulationData(year: 2016, population: 27000),     // 27,000 whales
-        PopulationData(year: 2017, population: 26500),     // 26,500 whales
-        PopulationData(year: 2018, population: 26000),     // 26,000 whales
-        PopulationData(year: 2019, population: 21000),     // 21,000 whales
-        PopulationData(year: 2020, population: 15000),     // 15,000 whales
-        PopulationData(year: 2021, population: 14000),     // 14,000 whales
-        PopulationData(year: 2022, population: 15000),     // 15,000 whales
-        PopulationData(year: 2023, population: 19000)      // 19,000 whales
+        PopulationData(year: 2016, population: 27000),
+        PopulationData(year: 2017, population: 26500),
+        PopulationData(year: 2018, population: 26000),
+        PopulationData(year: 2019, population: 21000),
+        PopulationData(year: 2020, population: 15000),
+        PopulationData(year: 2021, population: 14000),
+        PopulationData(year: 2022, population: 15000),
+        PopulationData(year: 2023, population: 19000)
     ]
 
     let turtle_population = [
-        PopulationData(year: 2016, population: 34000),     // Estimated 34,000 turtles
-        PopulationData(year: 2017, population: 35000),     // Estimated 35,000 turtles
-        PopulationData(year: 2018, population: 36000),     // Estimated 36,000 turtles
-        PopulationData(year: 2019, population: 35000),     // Estimated 35,000 turtles
-        PopulationData(year: 2020, population: 34000),     // Estimated 34,000 turtles
-        PopulationData(year: 2021, population: 35000),     // Estimated 35,000 turtles
-        PopulationData(year: 2022, population: 36000),     // Estimated 36,000 turtles
-        PopulationData(year: 2023, population: 34000)      // Estimated 34,000 turtles
+        PopulationData(year: 2016, population: 34000),
+        PopulationData(year: 2017, population: 35000),
+        PopulationData(year: 2018, population: 36000),
+        PopulationData(year: 2019, population: 35000),
+        PopulationData(year: 2020, population: 34000),
+        PopulationData(year: 2021, population: 35000),
+        PopulationData(year: 2022, population: 36000),
+        PopulationData(year: 2023, population: 34000)
     ]
 
     let condor_population = [
-        PopulationData(year: 2016, population: 446),       // Total condors
-        PopulationData(year: 2017, population: 463),       // Total condors
-        PopulationData(year: 2018, population: 488),       // Total condors
-        PopulationData(year: 2019, population: 518),       // Total condors
-        PopulationData(year: 2020, population: 504),       // Total condors
-        PopulationData(year: 2021, population: 537),       // Total condors
-        PopulationData(year: 2022, population: 561),       // Total condors
-        PopulationData(year: 2023, population: 580)        // Total condors
+        PopulationData(year: 2016, population: 446),
+        PopulationData(year: 2017, population: 463),
+        PopulationData(year: 2018, population: 488),
+        PopulationData(year: 2019, population: 518),
+        PopulationData(year: 2020, population: 504),
+        PopulationData(year: 2021, population: 537),
+        PopulationData(year: 2022, population: 561),
+        PopulationData(year: 2023, population: 580)
     ]
 
     
@@ -228,8 +228,6 @@ struct ContentView: View {
                         }
                         .padding()
                         
-                        // Other grid items...
-                        
                         VStack {
                             Toggle(isOn: $showImmersiveSpaceGallery) {
                                 HStack {
@@ -300,7 +298,7 @@ struct ContentView: View {
                         .padding()
 
                         VStack {
-                            Toggle(isOn: $showImmersiveSpaceVideoGallery) {
+                            Toggle(isOn: $showVieModelBeginning) {
                                 HStack {
                                     Image("VideoGallery")
                                         .resizable()
@@ -311,6 +309,8 @@ struct ContentView: View {
                             .toggleStyle(.button)
                             .buttonStyle(.plain)
                         }
+                        .padding()
+
                     }
                     .padding()
                     .background(Color.clear)
@@ -328,7 +328,7 @@ struct ContentView: View {
             switchImmersiveSpace(newValue, id: "ImmersiveSpace", soundFileName: "Introduction.wav")
         }
         .onChange(of: showImmersiveSpaceGallery) { _, newValue in
-            switchImmersiveSpace(newValue, id: "showImmersiveSpaceGallery")
+            switchImmersiveSpace(newValue, id: "showImmersiveSpaceGallery", soundFileName: "AmbientSounds.mp3")
         }
         .onChange(of: showImmersiveSpaceVideoGallery) { _, newValue in
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceVideoGallery")
@@ -344,7 +344,7 @@ struct ContentView: View {
             viewModel.urlString = MonarchURL
             Task {
                 await openCommonImmersiveSpace()
-                playSound(named: "Animal.wav")
+                playSound(named: "Introduction.wav")
             }
         }
     }

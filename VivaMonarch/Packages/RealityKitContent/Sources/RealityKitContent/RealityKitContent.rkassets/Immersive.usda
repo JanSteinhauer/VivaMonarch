@@ -7,7 +7,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["GridMaterial", "Giant_Manta_Ray_old_ver", "Sea_Green_Turtle", "Butterfly_Monarch", "Timeline", "Capsule", "SkyDome", "Yellow"]
+    reorder nameChildren = ["GridMaterial", "Giant_Manta_Ray_old_ver", "Sea_Green_Turtle", "Butterfly_Monarch", "Timeline", "Capsule", "SkyDome", "Yellow", "Timeline2"]
     def "GridMaterial" (
         active = true
         references = @Materials/GridMaterial.usda@
@@ -63,7 +63,7 @@ def Xform "Root"
             def Preliminary_Action "Action"
             {
                 rel affectedObjects = </Root>
-                rel animationLibraryKey = </Root/Timeline>
+                rel animationLibraryKey = </Root/Timeline2>
                 rel animationLibraryKeyOverrideKey = </Root/Giant_Manta_Ray_old_ver/OnAddedToScene/Trigger>
                 token info:id = "PlayTimeline"
                 int loops = 0
@@ -422,80 +422,6 @@ def Xform "Root"
                 def RealityKitStruct "timingFunction"
                 {
                     token type = "easeOut"
-                }
-            }
-
-            def RealityKitAction "Hide2"
-            {
-                string actionKind = "hide"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "DD763A05-BA83-404B-AC8F-5F2D6E244DCC"
-                double startTime = 16.666952137000266
-                rel target = </Root/Sea_Green_Turtle>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-
-            def RealityKitAction "Hide3"
-            {
-                string actionKind = "hide"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "401AC7D7-68A0-4D3B-B3FC-34A1D37150DF"
-                double startTime = 17.757346055298385
-                rel target = </Root/Butterfly_Monarch_2>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-
-            def RealityKitAction "Hide4"
-            {
-                string actionKind = "hide"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "F81D00F1-BC18-4224-BE9D-2F686608D269"
-                double startTime = 18.757346055398383
-                rel target = </Root/Butterfly_Monarch_1>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-        }
-
-        def RealityKitTrack "Track6"
-        {
-            def RealityKitAction "Hide3"
-            {
-                string actionKind = "hide"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "9A987D1F-59AE-432B-9145-002EB8147449"
-                double startTime = 17.281686991384706
-                rel target = </Root/Giant_Manta_Ray_old_ver>
-
-                def RealityKitStruct "timingFunction"
-                {
-                    token type = "default"
-                }
-            }
-
-            def RealityKitAction "Hide"
-            {
-                string actionKind = "hide"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "17D05158-36AF-4FC2-816C-4505F25E7745"
-                double startTime = 18.955004115138333
-                rel target = </Root/Butterfly_Monarch>
-
-                def RealityKitStruct "timingFunction"
-                {
                 }
             }
         }
@@ -1086,6 +1012,23 @@ def Xform "Root"
         float3 xformOp:scale = (0.01, 0.01, 0.01)
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitTimeline "Timeline2"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 22.239999771418166
+                uniform token info:id = "84097EBB-8091-433E-96E6-A4F52BE9BED5"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/Timeline>
+            }
+        }
     }
 }
 
