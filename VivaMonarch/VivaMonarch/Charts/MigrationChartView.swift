@@ -24,29 +24,15 @@ struct MigrationChartView: View {
         MigrationData(region: "Northern Mexico", distance: 1000)
     ]
     @State private var selectedDataID: UUID?
-       @State private var showAllLabels = false
-
+       
        var body: some View {
            VStack {
-               Toggle("Show All Labels", isOn: $showAllLabels)
-                   .padding()
-
                Chart(data) { item in
                    BarMark(
                        x: .value("Region", item.region),
                        y: .value("Distance", item.distance)
                    )
                    .foregroundStyle(selectedDataID == nil || selectedDataID == item.id ? .blue : .blue.opacity(0.5))
-                   .annotation(position: .top) {
-                       if showAllLabels || selectedDataID == item.id {
-                           Text("\(item.distance, specifier: "%.0f") km")
-                               .font(.caption)
-                               .padding(5)
-                               .background(Color.white.opacity(0.8))
-                               .cornerRadius(5)
-                               .shadow(radius: 5)
-                       }
-                   }
                }
                .chartYAxis {
                    AxisMarks(position: .leading)

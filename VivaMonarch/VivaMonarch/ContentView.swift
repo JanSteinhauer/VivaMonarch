@@ -2,11 +2,18 @@ import SwiftUI
 import RealityKit
 import AVFoundation
 
-struct ContentView: View {
+enum ChartType {
+    case none
+    case population
+    case migration
+}
 
+
+struct ContentView: View {
+    
     @Bindable var viewModel: ViewModel
     @Environment(Title.self) private var model
-
+    
     @State private var currentImmersiveSpace: String? = nil
     @State private var showImmersiveSpace = false
     @State private var showImmersiveSpaceGallery = false
@@ -16,20 +23,20 @@ struct ContentView: View {
     @State private var showVieModelWhales = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
-    @State private var showChartView = false // New state variable to control chart visibility
-
-    	
-
+    @State private var showChartView = false // New state variable to control chart visibilit
+    @State private var selectedChart: ChartType = .none
+    
+    
     var baseYear: Int = 2024
     
     let MonarchURL = "https://firebasestorage.googleapis.com/v0/b/vivamonarch-b34f3.appspot.com/o/Monarch6.mp4?alt=media&token=b8b6bb34-ce96-426e-9c03-ee2947883e94"
     let WhalesURL = "https://firebasestorage.googleapis.com/v0/b/greenshiftai.appspot.com/o/Whale%20North%20Sunset%20Final%20A.mp4?alt=media&token=68d4186f-2ccb-4740-b423-de77e0a805be"
     let CreditsURL = "https://firebasestorage.googleapis.com/v0/b/greenshiftai.appspot.com/o/Butterflies%20Blue%20Sky_1.mp4?alt=media&token=383bcdec-db25-4d69-8120-506b8c9a1b4c"
-
-
+    
+    
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-
+    
     private func playSound(named soundFileName: String) {
         stopAudio() // Stop previous audio
         guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
@@ -42,16 +49,18 @@ struct ContentView: View {
             print("Could not load file")
         }
     }
-
-
+    
+    
     private func stopAudio() {
         audioPlayer?.stop()
         audioPlayer = nil
     }
-
+    
+    
+    
     var body: some View {
         @Bindable var model = model
-
+        
         NavigationStack {
             VStack {
                 Text(model.finalTitle)
@@ -69,27 +78,41 @@ struct ContentView: View {
                 Text("Start your journey NOW")
                     .font(.title)
                     .opacity(model.isTitleFinished ? 1 : 0)
-
-                if showChartView {
-                    // Display the chart and back button
-                    Text("Monarch Butterfly Population Over Years")
-                        .font(.system(size: 40))
-                        .padding(.top)
-
-                    PopulationChartView()
-                        .frame(height: 300)
-
-                    Button(action: {
-                        showChartView = false
-                    }) {
-                        Text("Back")
-                            .font(.headline)
-                            .padding()
-//                            .background(Color.orange)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                
+                if selectedChart != .none {
+                    VStack {
+                        switch selectedChart {
+                        case .population:
+                            Text("Monarch Butterfly Population Over Years")
+                                .font(.system(size: 40))
+                                .padding(.top)
+                            
+                            PopulationChartView()
+                                .frame(height: 300)
+                            
+                        case .migration:
+                            Text("Migration Distance by Region")
+                                .font(.headline)
+                                .padding(.top)
+                            
+                            MigrationChartView()
+                                .frame(height: 300)
+                            
+                        default:
+                            EmptyView()
+                        }
+                        
+                        Button(action: {
+                            selectedChart = .none
+                        }) {
+                            Text("Back")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
                     }
-                    .padding()
                 } else {
                     // Display the grid
                     LazyVGrid(columns: [
@@ -98,7 +121,7 @@ struct ContentView: View {
                     ], spacing: 10) {
                         VStack {
                             Button(action: {
-                                showChartView = true
+                                selectedChart = .population
                                 stopAudio()
                                 viewModel.urlString = WhalesURL
                                 Task {
@@ -200,6 +223,7 @@ struct ContentView: View {
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceVideoGallery")
         }
         .onChange(of: showImmersiveSpaceAmerica) { _, newValue in
+            selectedChart = .migration
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceAmerica")
         }
         .onChange(of: showVieModelBeginning) { _, newValue in
