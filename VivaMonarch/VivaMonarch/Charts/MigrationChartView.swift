@@ -23,6 +23,11 @@ struct MigrationChartView: View {
         MigrationData(region: "Southern USA", distance: 1500),
         MigrationData(region: "Northern Mexico", distance: 1000)
     ]
+    
+    var customColor: Color {
+        Color(red: 170/255.0, green: 121/255.0, blue: 66/255.0)
+    }
+    
     @State private var selectedDataID: UUID?
        
        var body: some View {
@@ -32,7 +37,7 @@ struct MigrationChartView: View {
                        x: .value("Region", item.region),
                        y: .value("Distance", item.distance)
                    )
-                   .foregroundStyle(selectedDataID == nil || selectedDataID == item.id ? .blue : .blue.opacity(0.5))
+                   .foregroundStyle(selectedDataID == nil || selectedDataID == item.id ? customColor : customColor.opacity(0.5))
                }
                .chartYAxis {
                    AxisMarks(position: .leading)

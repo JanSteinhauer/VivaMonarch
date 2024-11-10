@@ -7,6 +7,7 @@ enum ChartType {
     case population
     case migration
     case butterflyhub
+    case credits
 }
 
 
@@ -179,6 +180,9 @@ struct ContentView: View {
                             
                             MigrationChartView()
                                 .frame(height: 300)
+                        case .credits:
+                            Image("CreditsImage")
+                                .frame(height: 300)
                         case .butterflyhub:
                             Text("Monarch Butterfly Population Over Years")
                                 .font(.system(size: 40))
@@ -206,6 +210,7 @@ struct ContentView: View {
                     // Display the grid
                     LazyVGrid(columns: [
                         GridItem(.flexible()),
+                        GridItem(.flexible()),
                         GridItem(.flexible())
                     ], spacing: 10) {
                         VStack {
@@ -217,11 +222,12 @@ struct ContentView: View {
                                     await openCommonImmersiveSpace()
                                 }
                             }) {
-                                HStack {
-                                    Image("Migration")
+                                VStack {
+                                    Image("Bonus")
                                         .resizable()
                                         .frame(width: 140, height: 140)
-                                        .cornerRadius(15)
+                                        .clipShape(Circle())
+                                    Text("Bonus")
                                 }
                             }
                             .buttonStyle(.plain)
@@ -230,10 +236,12 @@ struct ContentView: View {
                         
                         VStack {
                             Toggle(isOn: $showImmersiveSpaceGallery) {
-                                HStack {
-                                    Image("PhotoGallery")
+                                VStack {
+                                    Image("GalleryIcon")
                                         .resizable()
                                         .frame(width: 140, height: 140)
+                                        .clipShape(Circle())
+                                    Text("Gallery")
                                 }
                                 .cornerRadius(15)
                             }
@@ -244,10 +252,12 @@ struct ContentView: View {
 
                         VStack {
                             Toggle(isOn: $showImmersiveSpaceAmerica) {
-                                HStack {
-                                    Image("USButterflies")
+                                VStack {
+                                    Image("AmericaMap")
                                         .resizable()
                                         .frame(width: 140, height: 140)
+                                        .clipShape(Circle())
+                                    Text("Journey America")
                                 }
                                 .cornerRadius(15)
                             }
@@ -260,16 +270,19 @@ struct ContentView: View {
                             Button(action: {
                                 stopAudio()
                                 viewModel.urlString = CreditsURL
+                                selectedChart = .credits
                                 Task {
                                     await openCommonImmersiveSpace()
                                 }
                             }) {
-                                HStack {
-                                    Image("Instagram")
+                                VStack {
+                                    Image("Credits")
                                         .resizable()
                                         .frame(width: 140, height: 140)
-                                        .cornerRadius(15)
+                                        .clipShape(Circle())
+                                    Text("Credits")
                                 }
+                                
                             }
                             .buttonStyle(.plain)
                         }
@@ -285,12 +298,12 @@ struct ContentView: View {
                                     playSound(named: "AmbientSounds.mp3")
                                 }
                             }) {
-                                HStack {
-                                    Image("Instagram")
+                                VStack {
+                                    Image("MonarchMigration")
                                         .resizable()
                                         .frame(width: 140, height: 140)
-                                        .cornerRadius(15)
-                                    Text("start")
+                                        .clipShape(Circle())
+                                    Text("Monarch Home")
                                 }
                             }
                             .buttonStyle(.plain)
@@ -299,10 +312,12 @@ struct ContentView: View {
 
                         VStack {
                             Toggle(isOn: $showVieModelBeginning) {
-                                HStack {
-                                    Image("VideoGallery")
+                                VStack {
+                                    Image("AnimalMigration")
                                         .resizable()
                                         .frame(width: 140, height: 140)
+                                        .clipShape(Circle())
+                                    Text("Animal Migration")
                                 }
                                 .cornerRadius(15)
                             }
