@@ -24,6 +24,7 @@
 		EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D82BB9BCB0004423E0 /* Shaders.metal */; };
 		EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */; };
 		EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8F92CE0301100FE1216 /* Introduction.wav */; };
+		EBCBF8FC2CE0322600FE1216 /* Animal.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8FB2CE0322600FE1216 /* Animal.wav */; };
 		EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B1E2BC86E08000B003D /* StartArea.wav */; };
 		EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B202BC86ECD000B003D /* monarch.usdz */; };
 		EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */; };
@@ -51,6 +52,7 @@
 		EB0390D82BB9BCB0004423E0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBeginning.swift; sourceTree = "<group>"; };
 		EBCBF8F92CE0301100FE1216 /* Introduction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Introduction.wav; sourceTree = "<group>"; };
+		EBCBF8FB2CE0322600FE1216 /* Animal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Animal.wav; sourceTree = "<group>"; };
 		EBCE0B1E2BC86E08000B003D /* StartArea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StartArea.wav; sourceTree = "<group>"; };
 		EBCE0B202BC86ECD000B003D /* monarch.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = monarch.usdz; sourceTree = "<group>"; };
 		EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMap.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				EBCBF8F92CE0301100FE1216 /* Introduction.wav */,
+				EBCBF8FB2CE0322600FE1216 /* Animal.wav */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBCBF8FC2CE0322600FE1216 /* Animal.wav in Resources */,
 				EB0390BF2BB997A8004423E0 /* Assets.xcassets in Resources */,
 				EB0390CD2BB99B32004423E0 /* Sphere.usda in Resources */,
 				EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */,

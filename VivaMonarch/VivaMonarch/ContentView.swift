@@ -33,6 +33,11 @@ struct ContentView: View {
         }
     }
 
+    private func stopAudio() {
+        audioPlayer?.stop()
+        audioPlayer = nil
+    }
+
     var body: some View {
         @Bindable var model = model
 
@@ -58,7 +63,7 @@ struct ContentView: View {
                     GridItem(.flexible())
                 ], spacing: 10) {
                     VStack {
-                        Toggle(isOn: $showImmersiveSpace) {
+                        Toggle(isOn: $showVieModelBeginning) {
                             HStack {
                                 Image("Migration")
                                     .resizable()
@@ -67,16 +72,14 @@ struct ContentView: View {
                             }
                         }
                         .toggleStyle(.button)
-                        .buttonStyle(.plain) // Apply plain style here
-                       
+                        .buttonStyle(.plain)
                     }
-
                     .padding()
 
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceGallery) {
                             HStack {
-                                Image("PhotoGallery") // Ensure the image has a transparent background
+                                Image("PhotoGallery")
                                     .resizable()
                                     .frame(width: 140, height: 140)
                             }
@@ -84,14 +87,13 @@ struct ContentView: View {
                         }
                         .toggleStyle(.button)
                         .buttonStyle(.plain)
-                        
                     }
                     .padding()
 
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceAmerica) {
                             HStack {
-                                Image("USButterflies") // Ensure the image has a transparent background
+                                Image("USButterflies")
                                     .resizable()
                                     .frame(width: 140, height: 140)
                             }
@@ -105,7 +107,7 @@ struct ContentView: View {
                     VStack {
                         Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
                             HStack {
-                                Image("Instagram") // Ensure the image has a transparent background
+                                Image("Instagram")
                                     .resizable()
                                     .frame(width: 140, height: 140)
                             }
@@ -116,21 +118,9 @@ struct ContentView: View {
                     .padding()
 
                     VStack {
-//                        Button(action: {
-//                            playSound(named: "StartArea.wav")
-//                        }) {
-//                            HStack {
-//                                Image("VideoGallery") // Ensure the image has a transparent background
-//                                    .resizable()
-//                                    .frame(width: 140, height: 140)
-//                            }
-//                            .cornerRadius(15)
-//                        }
-//                        .buttonStyle(.plain)
-                        
                         Toggle(isOn: $showImmersiveSpaceVideoGallery) {
                             HStack {
-                                Image("VideoGallery") // Ensure the image has a transparent background
+                                Image("VideoGallery")
                                     .resizable()
                                     .frame(width: 140, height: 140)
                             }
@@ -142,21 +132,6 @@ struct ContentView: View {
                 }
                 .padding()
                 .background(Color.clear)
-
-                // Aesthetic Slider Section
-//                VStack(spacing: 10) {
-//                    Slider(value: $sliderValue, in: -100...100, step: 1)
-//                        .padding(.horizontal, 20)
-//                        .accentColor(.blue)
-//                        .frame(maxWidth: 300)
-//                    Text("Current year: \(String(Int(sliderValue) + baseYear))")
-//                        .padding(.top, 5)
-//                        .font(.headline)
-//                }
-//                .padding()
-//                .background(Color.gray.opacity(0.1))
-//                .cornerRadius(10)
-//                .padding(.top, 20)
             }
             .typeText(
                 text: $model.titleText,
@@ -167,7 +142,7 @@ struct ContentView: View {
             .animation(.default.speed(0.25), value: model.isTitleFinished)
         }
         .onChange(of: showImmersiveSpace) { _, newValue in
-            switchImmersiveSpace(newValue, id: "ImmersiveSpace")
+            switchImmersiveSpace(newValue, id: "ImmersiveSpace", soundFileName: "Introduction.wav")
         }
         .onChange(of: showImmersiveSpaceGallery) { _, newValue in
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceGallery")
@@ -179,46 +154,44 @@ struct ContentView: View {
             switchImmersiveSpace(newValue, id: "showImmersiveSpaceAmerica")
         }
         .onChange(of: showVieModelBeginning) { _, newValue in
-            switchImmersiveSpace(newValue, id: "showVieModelBeginning")
+            switchImmersiveSpace(newValue, id: "showVieModelBeginning", soundFileName: "Animal.wav")
         }
         .onAppear {
-               // Automatically trigger the immersive space for showVieModelBeginning
-               showVieModelBeginning = true
-            
-               // Play audio introduction
-               playSound(named: "Introduction.wav")
-//                playSound(named: "StartArea.wav")
-           }
+            showImmersiveSpace = true
+        }
     }
 
-    private func switchImmersiveSpace(_ newValue: Bool, id: String) {
+    private func switchImmersiveSpace(_ newValue: Bool, id: String, soundFileName: String? = nil) {
         Task {
             if newValue {
                 if let currentSpace = currentImmersiveSpace, currentSpace != id {
+                    stopAudio() // Stop audio before switching immersive space
                     await dismissImmersiveSpace()
                     currentImmersiveSpace = nil
                 }
                 await openImmersiveSpace(id: id)
                 currentImmersiveSpace = id
+                if let soundFileName = soundFileName {
+                    playSound(named: soundFileName)
+                } else {
+                    stopAudio()
+                }
             } else {
+                stopAudio() // Stop audio when leaving immersive space
                 await dismissImmersiveSpace()
                 currentImmersiveSpace = nil
             }
         }
     }
-    
-  
 }
-
 
 struct NoHoverButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0) // Optional: slight scale effect on press
-            .background(Color.clear) // Ensure no background is added
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .background(Color.clear)
     }
 }
-
 
 #Preview {
     ContentView(viewModel: ViewModel())
