@@ -184,6 +184,10 @@ struct ContentView: View {
         .onAppear {
                // Automatically trigger the immersive space for showVieModelBeginning
                showVieModelBeginning = true
+            
+               // Play audio introduction
+               playSound(named: "Introduction.wav")
+//                playSound(named: "StartArea.wav")
            }
     }
 
@@ -202,6 +206,8 @@ struct ContentView: View {
             }
         }
     }
+    
+  
 }
 
 

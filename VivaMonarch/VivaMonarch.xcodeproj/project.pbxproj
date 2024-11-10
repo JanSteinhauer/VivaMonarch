@@ -23,6 +23,7 @@
 		EB0390D72BB9BC79004423E0 /* DigitalRain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D62BB9BC79004423E0 /* DigitalRain.swift */; };
 		EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D82BB9BCB0004423E0 /* Shaders.metal */; };
 		EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */; };
+		EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8F92CE0301100FE1216 /* Introduction.wav */; };
 		EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B1E2BC86E08000B003D /* StartArea.wav */; };
 		EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B202BC86ECD000B003D /* monarch.usdz */; };
 		EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */; };
@@ -49,6 +50,7 @@
 		EB0390D62BB9BC79004423E0 /* DigitalRain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRain.swift; sourceTree = "<group>"; };
 		EB0390D82BB9BCB0004423E0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBeginning.swift; sourceTree = "<group>"; };
+		EBCBF8F92CE0301100FE1216 /* Introduction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Introduction.wav; sourceTree = "<group>"; };
 		EBCE0B1E2BC86E08000B003D /* StartArea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StartArea.wav; sourceTree = "<group>"; };
 		EBCE0B202BC86ECD000B003D /* monarch.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = monarch.usdz; sourceTree = "<group>"; };
 		EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMap.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		EB0390B12BB997A6004423E0 /* VivaMonarch */ = {
 			isa = PBXGroup;
 			children = (
+				EBCBF8F62CE02DC900FE1216 /* Audio */,
 				EB0390CB2BB99AD7004423E0 /* Resources */,
 				EB0390C92BB997FF004423E0 /* ViewModel.swift */,
 				EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */,
@@ -135,6 +138,14 @@
 				EB0390CC2BB99B32004423E0 /* Sphere.usda */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EBCBF8F62CE02DC900FE1216 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				EBCBF8F92CE0301100FE1216 /* Introduction.wav */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 				EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */,
 				EB0390C22BB997A8004423E0 /* Preview Assets.xcassets in Resources */,
 				EB0390BD2BB997A6004423E0 /* ImageBasedLighting.skybox in Resources */,
+				EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */,
 				EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
