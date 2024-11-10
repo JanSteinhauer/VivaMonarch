@@ -4,7 +4,7 @@ import AVFoundation
 
 struct ContentView: View {
 
-    var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @Environment(Title.self) private var model
 
     @State private var currentImmersiveSpace: String? = nil
@@ -16,13 +16,19 @@ struct ContentView: View {
     @State private var showVieModelWhales = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
+    	
 
     var baseYear: Int = 2024
+    
+    let MonarchURL = "https://firebasestorage.googleapis.com/v0/b/vivamonarch-b34f3.appspot.com/o/Monarch6.mp4?alt=media&token=b8b6bb34-ce96-426e-9c03-ee2947883e94"
+    let WhalesURL = "https://firebasestorage.googleapis.com/v0/b/greenshiftai.appspot.com/o/Whale%20North%20Sunset%20Final%20A.mp4?alt=media&token=68d4186f-2ccb-4740-b423-de77e0a805be"
+
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
 
     private func playSound(named soundFileName: String) {
+        stopAudio() // Stop previous audio
         guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else { return }
         let url = URL(fileURLWithPath: path)
         do {
@@ -33,6 +39,7 @@ struct ContentView: View {
             print("Could not load file")
         }
     }
+
 
     private func stopAudio() {
         audioPlayer?.stop()
@@ -64,7 +71,13 @@ struct ContentView: View {
                     GridItem(.flexible())
                 ], spacing: 10) {
                     VStack {
-                        Toggle(isOn: $showVieModelBeginning) {
+                        Button(action: {
+                            stopAudio()
+                            viewModel.urlString = WhalesURL
+                            Task {
+                                await openCommonImmersiveSpace()
+                            }
+                        }) {
                             HStack {
                                 Image("Migration")
                                     .resizable()
@@ -72,11 +85,22 @@ struct ContentView: View {
                                     .cornerRadius(15)
                             }
                         }
-                        .toggleStyle(.button)
                         .buttonStyle(.plain)
                     }
-                    .padding()
-
+//                    VStack {
+//                        Toggle(isOn: $showVieModelWhales) {
+//                            HStack {
+//                                Image("Migration")
+//                                    .resizable()
+//                                    .frame(width: 140, height: 140)
+//                            }
+//                            .cornerRadius(15)
+//                        }
+//                        .toggleStyle(.button)
+//                        .buttonStyle(.plain)
+//                    }
+//                    .padding()
+                    
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceGallery) {
                             HStack {
@@ -174,10 +198,24 @@ struct ContentView: View {
         .onChange(of: showVieModelWhales) { _, newValue in
             switchImmersiveSpace(newValue, id: "showVieModelWhales")
         }
-        .onAppear {
-            showImmersiveSpace = true
+        .onAppear  {
+            viewModel.urlString = MonarchURL
+            Task {
+                await openCommonImmersiveSpace()
+                playSound(named: "Animal.wav")
+            }
         }
     }
+    
+    private func openCommonImmersiveSpace() async {
+          if currentImmersiveSpace != "CommonImmersiveSpace" {
+              if let currentSpace = currentImmersiveSpace {
+                  await dismissImmersiveSpace()
+              }
+              await openImmersiveSpace(id: "CommonImmersiveSpace")
+              currentImmersiveSpace = "CommonImmersiveSpace"
+          }
+      }
 
     private func switchImmersiveSpace(_ newValue: Bool, id: String, soundFileName: String? = nil) {
         Task {

@@ -2,7 +2,7 @@ import SwiftUI
 import RealityKit
 
 struct ImmersiveView: View {
-    var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
 
     @State private var effectEnabled = true
     @State private var strength: Float = 0
@@ -12,6 +12,7 @@ struct ImmersiveView: View {
             RealityView { content in
                 content.add(viewModel.setupContentEntity())
             }
+            .id(viewModel.urlString ?? UUID().uuidString) 
             .onAppear() {
                 viewModel.play()
             }

@@ -5,11 +5,17 @@ import Observation
 
 @Observable
 class ViewModel {
-
     private var contentEntity = Entity()
-    private let avPlayer = AVPlayer()
+    private var avPlayer = AVPlayer()
     private var playerItem: AVPlayerItem?
     private var endPlaybackObserver: Any?
+
+    var urlString: String? {
+        didSet {
+            setupAvPlayer()
+        }
+    }
+
 
     init() {
         setupAvPlayer()
@@ -23,13 +29,17 @@ class ViewModel {
     }
 
     private func setupAvPlayer() {
-        let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/vivamonarch-b34f3.appspot.com/o/Monarch6.mp4?alt=media&token=b8b6bb34-ce96-426e-9c03-ee2947883e94")
-        let asset = AVAsset(url: url!)
+        guard let urlString = urlString, let url = URL(string: urlString) else { return }
+        let asset = AVAsset(url: url)
         playerItem = AVPlayerItem(asset: asset)
         avPlayer.replaceCurrentItem(with: playerItem)
+        setupLooping()
     }
 
     private func setupLooping() {
+        if let observer = endPlaybackObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
         endPlaybackObserver = NotificationCenter.default.addObserver(
             forName: .AVPlayerItemDidPlayToEndTime,
             object: playerItem,
@@ -41,6 +51,9 @@ class ViewModel {
     }
 
     func setupContentEntity() -> Entity {
+        // Remove previous content entity if any
+        contentEntity.children.removeAll()
+
         let avPlayerMaterial = VideoMaterial(avPlayer: avPlayer)
 
         let sphere = try! Entity.load(named: "Sphere")
@@ -49,29 +62,13 @@ class ViewModel {
         let modelEntity = sphere.children[0].children[0] as! ModelEntity
         modelEntity.model?.materials = [avPlayerMaterial]
 
-        // Create a red overlay material
-        let redOverlayMaterial = SimpleMaterial(color: .black.withAlphaComponent(0.5), isMetallic: false)
-
-        // Create an overlay entity with the red material
-        let overlayEntity = ModelEntity(mesh: .generateSphere(radius: 0.5), materials: [redOverlayMaterial])
-        
-        // Match the scale of the model entity and make it 5 times bigger
-        overlayEntity.scale = modelEntity.scale * 10.0 // Multiply each component of the scale by 5
-
-        overlayEntity.position = modelEntity.position + [0, 0, 0.1] // Slightly in front of the model entity
-
-        // Add both the model and overlay entities to the contentEntity
         contentEntity.addChild(sphere)
-//        contentEntity.addChild(overlayEntity) // Add the overlay entity
+        contentEntity.scale = .one // Reset scale before applying inversion
         contentEntity.scale *= .init(x: -1, y: 1, z: 1)
 
         return contentEntity
     }
 
-
-
-    
-    
 
     func play() {
         avPlayer.play()
