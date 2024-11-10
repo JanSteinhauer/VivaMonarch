@@ -34,6 +34,8 @@
 		EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */; };
 		EBEFBEAA2CD01B46001DA80F /* ImmersiveVideoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFBEA92CD01B46001DA80F /* ImmersiveVideoGallery.swift */; };
 		EBEFBEAC2CD01B70001DA80F /* VideoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEFBEAB2CD01B70001DA80F /* VideoGallery.swift */; };
+		EBF195622CE12240008B33B4 /* PopulationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195612CE1223F008B33B4 /* PopulationChartView.swift */; };
+		EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195632CE1236A008B33B4 /* MigrationChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMap.swift; sourceTree = "<group>"; };
 		EBEFBEA92CD01B46001DA80F /* ImmersiveVideoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveVideoGallery.swift; sourceTree = "<group>"; };
 		EBEFBEAB2CD01B70001DA80F /* VideoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGallery.swift; sourceTree = "<group>"; };
+		EBF195612CE1223F008B33B4 /* PopulationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationChartView.swift; sourceTree = "<group>"; };
+		EBF195632CE1236A008B33B4 /* MigrationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		EB0390B12BB997A6004423E0 /* VivaMonarch */ = {
 			isa = PBXGroup;
 			children = (
+				EBF195652CE12E01008B33B4 /* Charts */,
 				EBCBF8F62CE02DC900FE1216 /* Audio */,
 				EB0390CB2BB99AD7004423E0 /* Resources */,
 				EB0390C92BB997FF004423E0 /* ViewModel.swift */,
@@ -161,6 +166,15 @@
 				EBCBF8FF2CE0421600FE1216 /* Canada.wav */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		EBF195652CE12E01008B33B4 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				EBF195612CE1223F008B33B4 /* PopulationChartView.swift */,
+				EBF195632CE1236A008B33B4 /* MigrationChartView.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +270,8 @@
 				EB0390D12BB9A7A6004423E0 /* ImmersiveViewGallery.swift in Sources */,
 				EB0390D32BB9B386004423E0 /* TypeTextModifier.swift in Sources */,
 				EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */,
+				EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */,
+				EBF195622CE12240008B33B4 /* PopulationChartView.swift in Sources */,
 				EB0390CA2BB997FF004423E0 /* ViewModel.swift in Sources */,
 				EB0390BB2BB997A6004423E0 /* ImmersiveView.swift in Sources */,
 				EBEFBEAC2CD01B70001DA80F /* VideoGallery.swift in Sources */,

@@ -67,6 +67,12 @@ struct ContentView: View {
                 Text("Start your journey NOW")
                     .font(.title)
                     .opacity(model.isTitleFinished ? 1 : 0)
+                Text("Monarch Butterfly Population Over Years")
+                                    .font(.headline)
+                                    .padding(.top)
+
+                PopulationChartView()
+                                    .frame(height: 300)
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible())
