@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var showVieModelWhales = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
+    @State private var showChartView = false // New state variable to control chart visibility
+
     	
 
     var baseYear: Int = 2024
@@ -67,134 +69,118 @@ struct ContentView: View {
                 Text("Start your journey NOW")
                     .font(.title)
                     .opacity(model.isTitleFinished ? 1 : 0)
-                Text("Monarch Butterfly Population Over Years")
-                                    .font(.headline)
-                                    .padding(.top)
 
-                PopulationChartView()
-                                    .frame(height: 300)
-                LazyVGrid(columns: [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ], spacing: 10) {
-                    VStack {
-                        Button(action: {
-                            stopAudio()
-                            viewModel.urlString = WhalesURL
-                            Task {
-                                await openCommonImmersiveSpace()
-                            }
-                        }) {
-                            HStack {
-                                Image("Migration")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
-                                    .cornerRadius(15)
-                            }
-                        }
-                        .buttonStyle(.plain)
-                    }
-//                    VStack {
-//                        Toggle(isOn: $showVieModelWhales) {
-//                            HStack {
-//                                Image("Migration")
-//                                    .resizable()
-//                                    .frame(width: 140, height: 140)
-//                            }
-//                            .cornerRadius(15)
-//                        }
-//                        .toggleStyle(.button)
-//                        .buttonStyle(.plain)
-//                    }
-//                    .padding()
-                    
-                    VStack {
-                        Toggle(isOn: $showImmersiveSpaceGallery) {
-                            HStack {
-                                Image("PhotoGallery")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
-                            }
-                            .cornerRadius(15)
-                        }
-                        .toggleStyle(.button)
-                        .buttonStyle(.plain)
+                if showChartView {
+                    // Display the chart and back button
+                    Text("Monarch Butterfly Population Over Years")
+                        .font(.system(size: 40))
+                        .padding(.top)
+
+                    PopulationChartView()
+                        .frame(height: 300)
+
+                    Button(action: {
+                        showChartView = false
+                    }) {
+                        Text("Back")
+                            .font(.headline)
+                            .padding()
+//                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
                     .padding()
-                    
-                    VStack {
-                        Toggle(isOn: $showVieModelWhales) {
-                            HStack {
-                                Image("Migration")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
+                } else {
+                    // Display the grid
+                    LazyVGrid(columns: [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ], spacing: 10) {
+                        VStack {
+                            Button(action: {
+                                showChartView = true
+                                stopAudio()
+                                viewModel.urlString = WhalesURL
+                                Task {
+                                    await openCommonImmersiveSpace()
+                                }
+                            }) {
+                                HStack {
+                                    Image("Migration")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                        .cornerRadius(15)
+                                }
                             }
-                            .cornerRadius(15)
+                            .buttonStyle(.plain)
                         }
-                        .toggleStyle(.button)
-                        .buttonStyle(.plain)
+                        .padding()
+                        
+                        // Other grid items...
+                        
+                        VStack {
+                            Toggle(isOn: $showImmersiveSpaceGallery) {
+                                HStack {
+                                    Image("PhotoGallery")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                }
+                                .cornerRadius(15)
+                            }
+                            .toggleStyle(.button)
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+
+                        VStack {
+                            Toggle(isOn: $showImmersiveSpaceAmerica) {
+                                HStack {
+                                    Image("USButterflies")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                }
+                                .cornerRadius(15)
+                            }
+                            .toggleStyle(.button)
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+
+                        VStack {
+                            Button(action: {
+                                stopAudio()
+                                viewModel.urlString = CreditsURL
+                                Task {
+                                    await openCommonImmersiveSpace()
+                                }
+                            }) {
+                                HStack {
+                                    Image("Instagram")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                        .cornerRadius(15)
+                                }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+
+                        VStack {
+                            Toggle(isOn: $showImmersiveSpaceVideoGallery) {
+                                HStack {
+                                    Image("VideoGallery")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                }
+                                .cornerRadius(15)
+                            }
+                            .toggleStyle(.button)
+                            .buttonStyle(.plain)
+                        }
                     }
                     .padding()
-
-                    VStack {
-                        Toggle(isOn: $showImmersiveSpaceAmerica) {
-                            HStack {
-                                Image("USButterflies")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
-                            }
-                            .cornerRadius(15)
-                        }
-                        .toggleStyle(.button)
-                        .buttonStyle(.plain)
-                    }
-                    .padding()
-
-                    VStack {
-                        Button(action: {
-                            stopAudio()
-                            viewModel.urlString = CreditsURL
-                            Task {
-                                await openCommonImmersiveSpace()
-                            }
-                        }) {
-                            HStack {
-                                Image("Instagram")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
-                                    .cornerRadius(15)
-                            }
-                        }
-                        .buttonStyle(.plain)
-                    }
-                    .padding()
-//                    VStack {
-//                        Link(destination: URL(string: "https://www.instagram.com/stei.jan/")!) {
-//                            HStack {
-//                                Image("Instagram")
-//                                    .resizable()
-//                                    .frame(width: 140, height: 140)
-//                            }
-//                            .cornerRadius(15)
-//                        }
-//                        .buttonStyle(.plain)
-//                    }
-
-                    VStack {
-                        Toggle(isOn: $showImmersiveSpaceVideoGallery) {
-                            HStack {
-                                Image("VideoGallery")
-                                    .resizable()
-                                    .frame(width: 140, height: 140)
-                            }
-                            .cornerRadius(15)
-                        }
-                        .toggleStyle(.button)
-                        .buttonStyle(.plain)
-                    }
+                    .background(Color.clear)
                 }
-                .padding()
-                .background(Color.clear)
             }
             .typeText(
                 text: $model.titleText,
@@ -219,9 +205,6 @@ struct ContentView: View {
         .onChange(of: showVieModelBeginning) { _, newValue in
             switchImmersiveSpace(newValue, id: "showVieModelBeginning", soundFileName: "Animal.wav")
         }
-        .onChange(of: showVieModelWhales) { _, newValue in
-            switchImmersiveSpace(newValue, id: "showVieModelWhales")
-        }
         .onAppear  {
             viewModel.urlString = MonarchURL
             Task {
@@ -230,16 +213,16 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private func openCommonImmersiveSpace() async {
-          if currentImmersiveSpace != "CommonImmersiveSpace" {
-              if let currentSpace = currentImmersiveSpace {
-                  await dismissImmersiveSpace()
-              }
-              await openImmersiveSpace(id: "CommonImmersiveSpace")
-              currentImmersiveSpace = "CommonImmersiveSpace"
-          }
-      }
+        if currentImmersiveSpace != "CommonImmersiveSpace" {
+            if let currentSpace = currentImmersiveSpace {
+                await dismissImmersiveSpace()
+            }
+            await openImmersiveSpace(id: "CommonImmersiveSpace")
+            currentImmersiveSpace = "CommonImmersiveSpace"
+        }
+    }
 
     private func switchImmersiveSpace(_ newValue: Bool, id: String, soundFileName: String? = nil) {
         Task {
@@ -271,8 +254,4 @@ struct NoHoverButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
             .background(Color.clear)
     }
-}
-
-#Preview {
-    ContentView(viewModel: ViewModel())
 }

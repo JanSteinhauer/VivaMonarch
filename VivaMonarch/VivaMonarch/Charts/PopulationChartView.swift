@@ -30,8 +30,6 @@ struct PopulationChartView: View {
 
        var body: some View {
            VStack {
-               Toggle("Show All Labels", isOn: $showAllLabels)
-                   .padding()
 
                Chart(data) { item in
                    LineMark(
@@ -43,16 +41,7 @@ struct PopulationChartView: View {
                    .symbol(.circle)
                    .symbolSize(50)
                    .opacity(selectedDataID == nil || selectedDataID == item.id ? 1 : 0.5)
-                   .annotation(position: .top) {
-                       if showAllLabels || selectedDataID == item.id {
-                           Text("\(item.population, specifier: "%.2f") hectares")
-                               .font(.caption)
-                               .padding(5)
-                               .background(Color.white.opacity(0.8))
-                               .cornerRadius(5)
-                               .shadow(radius: 5)
-                       }
-                   }
+
                }
                .chartXAxis {
                    AxisMarks(values: Array(2016...2023))
