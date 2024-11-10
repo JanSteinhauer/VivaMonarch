@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct VivaMonarchApp: App {
     @State private var viewModel = ViewModel()
+    @State private var viewModelWhales = ViewModelWhales()
     @State private var model = Title()
     
 
@@ -35,6 +36,9 @@ struct VivaMonarchApp: App {
         .immersionStyle(selection: .constant(.full), in: .full)
         ImmersiveSpace(id: "showVieModelBeginning") {
             VieModelBeginning()
+        }
+        ImmersiveSpace(id: "showVieModelWhales") {
+            ImmersiveViewWhales(viewModel: viewModelWhales)
         }
     }
 }

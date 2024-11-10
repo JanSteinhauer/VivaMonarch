@@ -29,6 +29,8 @@
 		EBCBF9002CE0421600FE1216 /* Canada.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8FF2CE0421600FE1216 /* Canada.wav */; };
 		EBCBF9022CE0425700FE1216 /* USA.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF9012CE0425700FE1216 /* USA.wav */; };
 		EBCBF9062CE046ED00FE1216 /* Mexico.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF9052CE046ED00FE1216 /* Mexico.wav */; };
+		EBCBF9082CE0499900FE1216 /* ViewModelWhales.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBF9072CE0499900FE1216 /* ViewModelWhales.swift */; };
+		EBCBF90B2CE04E5400FE1216 /* ImmersiveViewWhales.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBF90A2CE04E5400FE1216 /* ImmersiveViewWhales.swift */; };
 		EBCE0B1F2BC86E08000B003D /* StartArea.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B1E2BC86E08000B003D /* StartArea.wav */; };
 		EBCE0B212BC86ECD000B003D /* monarch.usdz in Resources */ = {isa = PBXBuildFile; fileRef = EBCE0B202BC86ECD000B003D /* monarch.usdz */; };
 		EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */; };
@@ -61,6 +63,8 @@
 		EBCBF8FF2CE0421600FE1216 /* Canada.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Canada.wav; sourceTree = "<group>"; };
 		EBCBF9012CE0425700FE1216 /* USA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = USA.wav; sourceTree = "<group>"; };
 		EBCBF9052CE046ED00FE1216 /* Mexico.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Mexico.wav; sourceTree = "<group>"; };
+		EBCBF9072CE0499900FE1216 /* ViewModelWhales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelWhales.swift; sourceTree = "<group>"; };
+		EBCBF90A2CE04E5400FE1216 /* ImmersiveViewWhales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveViewWhales.swift; sourceTree = "<group>"; };
 		EBCE0B1E2BC86E08000B003D /* StartArea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StartArea.wav; sourceTree = "<group>"; };
 		EBCE0B202BC86ECD000B003D /* monarch.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = monarch.usdz; sourceTree = "<group>"; };
 		EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMap.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				EB0390BE2BB997A8004423E0 /* Assets.xcassets */,
 				EB0390C32BB997A8004423E0 /* Info.plist */,
 				EB0390C02BB997A8004423E0 /* Preview Content */,
+				EBCBF9072CE0499900FE1216 /* ViewModelWhales.swift */,
+				EBCBF90A2CE04E5400FE1216 /* ImmersiveViewWhales.swift */,
 			);
 			path = VivaMonarch;
 			sourceTree = "<group>";
@@ -250,9 +256,11 @@
 				EB0390B92BB997A6004423E0 /* ContentView.swift in Sources */,
 				EB0390D72BB9BC79004423E0 /* DigitalRain.swift in Sources */,
 				EBEFBEAA2CD01B46001DA80F /* ImmersiveVideoGallery.swift in Sources */,
+				EBCBF90B2CE04E5400FE1216 /* ImmersiveViewWhales.swift in Sources */,
 				EB0390CF2BB9A08D004423E0 /* Gallery.swift in Sources */,
 				EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */,
 				EB0390B72BB997A6004423E0 /* VivaMonarchApp.swift in Sources */,
+				EBCBF9082CE0499900FE1216 /* ViewModelWhales.swift in Sources */,
 				EB0390D12BB9A7A6004423E0 /* ImmersiveViewGallery.swift in Sources */,
 				EB0390D32BB9B386004423E0 /* TypeTextModifier.swift in Sources */,
 				EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */,

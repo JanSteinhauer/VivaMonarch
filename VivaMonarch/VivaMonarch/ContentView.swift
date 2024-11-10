@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var showImmersiveSpaceVideoGallery = false
     @State private var showImmersiveSpaceAmerica = false
     @State private var showVieModelBeginning = false
+    @State private var showVieModelWhales = false
     @State private var sliderValue: Double = 0 // Slider state variable
     @State private var audioPlayer: AVAudioPlayer?
 
@@ -89,6 +90,20 @@ struct ContentView: View {
                         .buttonStyle(.plain)
                     }
                     .padding()
+                    
+                    VStack {
+                        Toggle(isOn: $showVieModelWhales) {
+                            HStack {
+                                Image("Migration")
+                                    .resizable()
+                                    .frame(width: 140, height: 140)
+                            }
+                            .cornerRadius(15)
+                        }
+                        .toggleStyle(.button)
+                        .buttonStyle(.plain)
+                    }
+                    .padding()
 
                     VStack {
                         Toggle(isOn: $showImmersiveSpaceAmerica) {
@@ -155,6 +170,9 @@ struct ContentView: View {
         }
         .onChange(of: showVieModelBeginning) { _, newValue in
             switchImmersiveSpace(newValue, id: "showVieModelBeginning", soundFileName: "Animal.wav")
+        }
+        .onChange(of: showVieModelWhales) { _, newValue in
+            switchImmersiveSpace(newValue, id: "showVieModelWhales")
         }
         .onAppear {
             showImmersiveSpace = true
