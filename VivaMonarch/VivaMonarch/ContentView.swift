@@ -57,7 +57,50 @@ struct ContentView: View {
         audioPlayer = nil
     }
     
-    
+    let monarch_population = [
+        PopulationData(year: 2016, population: 84000000),  // 4.0 hectares
+        PopulationData(year: 2017, population: 96600000),  // 4.6 hectares
+        PopulationData(year: 2018, population: 186900000), // 8.9 hectares
+        PopulationData(year: 2019, population: 141400000), // 6.7 hectares
+        PopulationData(year: 2020, population: 99300000),  // 4.7 hectares
+        PopulationData(year: 2021, population: 59640000),  // 2.84 hectares
+        PopulationData(year: 2022, population: 58800000),  // 2.8 hectares
+        PopulationData(year: 2023, population: 18900000)   // 0.9 hectares
+    ]
+
+    let whale_population = [
+        PopulationData(year: 2016, population: 27000),     // 27,000 whales
+        PopulationData(year: 2017, population: 26500),     // 26,500 whales
+        PopulationData(year: 2018, population: 26000),     // 26,000 whales
+        PopulationData(year: 2019, population: 21000),     // 21,000 whales
+        PopulationData(year: 2020, population: 15000),     // 15,000 whales
+        PopulationData(year: 2021, population: 14000),     // 14,000 whales
+        PopulationData(year: 2022, population: 15000),     // 15,000 whales
+        PopulationData(year: 2023, population: 19000)      // 19,000 whales
+    ]
+
+    let turtle_population = [
+        PopulationData(year: 2016, population: 34000),     // Estimated 34,000 turtles
+        PopulationData(year: 2017, population: 35000),     // Estimated 35,000 turtles
+        PopulationData(year: 2018, population: 36000),     // Estimated 36,000 turtles
+        PopulationData(year: 2019, population: 35000),     // Estimated 35,000 turtles
+        PopulationData(year: 2020, population: 34000),     // Estimated 34,000 turtles
+        PopulationData(year: 2021, population: 35000),     // Estimated 35,000 turtles
+        PopulationData(year: 2022, population: 36000),     // Estimated 36,000 turtles
+        PopulationData(year: 2023, population: 34000)      // Estimated 34,000 turtles
+    ]
+
+    let condor_population = [
+        PopulationData(year: 2016, population: 446),       // Total condors
+        PopulationData(year: 2017, population: 463),       // Total condors
+        PopulationData(year: 2018, population: 488),       // Total condors
+        PopulationData(year: 2019, population: 518),       // Total condors
+        PopulationData(year: 2020, population: 504),       // Total condors
+        PopulationData(year: 2021, population: 537),       // Total condors
+        PopulationData(year: 2022, population: 561),       // Total condors
+        PopulationData(year: 2023, population: 580)        // Total condors
+    ]
+
     
     var body: some View {
         @Bindable var model = model
@@ -84,12 +127,50 @@ struct ContentView: View {
                     VStack {
                         switch selectedChart {
                         case .population:
-                            Text("Monarch Butterfly Population Over Years")
+                            Text("Population Over Years in Millions")
                                 .font(.system(size: 40))
                                 .padding(.top)
-                            
-                            PopulationChartView()
-                                .frame(height: 300)
+                            VStack{
+                                HStack{
+                                    VStack{
+                                        Text("Monarch Butterfly")
+                                            .font(.system(size: 20))
+                                            .padding(.top)
+                                        PopulationChartView(data: monarch_population)
+                                            .frame(height: 100)
+                                    }
+                                   
+                                    VStack{
+                                        Text("Whale")
+                                            .font(.system(size: 20))
+                                            .padding(.top)
+                                        PopulationChartView(data: whale_population)
+                                            .frame(height: 100)
+                                    }
+                                       
+                                }
+                                HStack{
+                                    VStack{
+                                        Text("Turtle")
+                                            .font(.system(size: 20))
+                                            .padding(.top)
+                                        PopulationChartView(data: turtle_population)
+                                            .frame(height: 100)
+                                    }
+                                        
+                                    VStack{
+                                        Text("California condor")
+                                            .font(.system(size: 20))
+                                            .padding(.top)
+                                        PopulationChartView(data: turtle_population)
+                                            .frame(height: 100)
+                                    }
+                                       
+                                }
+                            }
+                            .padding(.bottom)
+//                            PopulationChartView()
+//                                .frame(height: 300)
                             
                         case .migration:
                             Text("Migration Distance by Region")
@@ -103,7 +184,7 @@ struct ContentView: View {
                                 .font(.system(size: 40))
                                 .padding(.top)
                             
-                            PopulationChartView()
+                            PopulationChartView(data: monarch_population)
                                 .frame(height: 300)
                             
                         default:

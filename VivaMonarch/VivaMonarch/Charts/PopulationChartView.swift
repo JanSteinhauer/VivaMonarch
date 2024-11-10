@@ -14,20 +14,16 @@ struct PopulationData: Identifiable {
 }
 
 struct PopulationChartView: View {
-    let data = [
-        PopulationData(year: 2016, population: 3.06),
-        PopulationData(year: 2017, population: 2.91),
-        PopulationData(year: 2018, population: 3.05),
-        PopulationData(year: 2019, population: 2.83),
-        PopulationData(year: 2020, population: 2.10),
-        PopulationData(year: 2021, population: 2.84),
-        PopulationData(year: 2022, population: 2.10),
-        PopulationData(year: 2023, population: 1.92)
-    ]
+    let data : [PopulationData]
 
     @State private var selectedDataID: UUID?
        @State private var showAllLabels = false
 
+    
+    private var maxPopulation: Double {
+            data.map { $0.population }.max() ?? 6.5
+        }
+    
        var body: some View {
            VStack {
 
@@ -47,8 +43,8 @@ struct PopulationChartView: View {
                    AxisMarks(values: Array(2016...2023))
                }
                .chartXScale(domain: 2016...2023) // Added this line
-               .chartYScale(domain: 0...6.5)
-               .frame(width: 500, height: 300)
+               .chartYScale(domain: 0...(maxPopulation-8))
+               .frame(width: 400, height: 110)
                .padding()
            }
        }
