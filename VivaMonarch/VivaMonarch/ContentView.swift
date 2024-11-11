@@ -214,25 +214,37 @@ struct ContentView: View {
                         GridItem(.flexible())
                     ], spacing: 10) {
                         VStack {
-                            Button(action: {
-                                selectedChart = .population
-                                stopAudio()
-                                viewModel.urlString = WhalesURL
-                                Task {
-                                    await openCommonImmersiveSpace()
-                                }
-                            }) {
+                            Toggle(isOn: $showImmersiveSpaceAmerica) {
                                 VStack {
-                                    Image("Bonus")
+                                    Image("AmericaMap")
                                         .resizable()
                                         .frame(width: 140, height: 140)
                                         .clipShape(Circle())
-                                    Text("Bonus")
+                                    Text("Journey America")
                                 }
+                                .cornerRadius(15)
                             }
+                            .toggleStyle(.button)
                             .buttonStyle(.plain)
                         }
                         .padding()
+                        
+                        VStack {
+                            Toggle(isOn: $showVieModelBeginning) {
+                                VStack {
+                                    Image("AnimalMigration")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                        .clipShape(Circle())
+                                    Text("Animal Migration")
+                                }
+                                .cornerRadius(15)
+                            }
+                            .toggleStyle(.button)
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+                   
                         
                         VStack {
                             Toggle(isOn: $showImmersiveSpaceGallery) {
@@ -250,43 +262,9 @@ struct ContentView: View {
                         }
                         .padding()
 
-                        VStack {
-                            Toggle(isOn: $showImmersiveSpaceAmerica) {
-                                VStack {
-                                    Image("AmericaMap")
-                                        .resizable()
-                                        .frame(width: 140, height: 140)
-                                        .clipShape(Circle())
-                                    Text("Journey America")
-                                }
-                                .cornerRadius(15)
-                            }
-                            .toggleStyle(.button)
-                            .buttonStyle(.plain)
-                        }
-                        .padding()
+                       
 
-                        VStack {
-                            Button(action: {
-                                stopAudio()
-                                viewModel.urlString = CreditsURL
-                                selectedChart = .credits
-                                Task {
-                                    await openCommonImmersiveSpace()
-                                }
-                            }) {
-                                VStack {
-                                    Image("Credits")
-                                        .resizable()
-                                        .frame(width: 140, height: 140)
-                                        .clipShape(Circle())
-                                    Text("Credits")
-                                }
-                                
-                            }
-                            .buttonStyle(.plain)
-                        }
-                        .padding()
+                       
                         
                         VStack {
                             Button(action: {
@@ -310,18 +288,48 @@ struct ContentView: View {
                         }
                         .padding()
 
+                        
+                        
                         VStack {
-                            Toggle(isOn: $showVieModelBeginning) {
+                            Button(action: {
+                                stopAudio()
+                                viewModel.urlString = CreditsURL
+                                selectedChart = .credits
+                                Task {
+                                    await openCommonImmersiveSpace()
+                                }
+                            }) {
                                 VStack {
-                                    Image("AnimalMigration")
+                                    Image("Credits")
                                         .resizable()
                                         .frame(width: 140, height: 140)
                                         .clipShape(Circle())
-                                    Text("Animal Migration")
+                                    Text("Credits")
                                 }
-                                .cornerRadius(15)
+                                
                             }
-                            .toggleStyle(.button)
+                            .buttonStyle(.plain)
+                        }
+                        .padding()
+                        
+                        
+                        VStack {
+                            Button(action: {
+                                selectedChart = .population
+                                stopAudio()
+                                viewModel.urlString = WhalesURL
+                                Task {
+                                    await openCommonImmersiveSpace()
+                                }
+                            }) {
+                                VStack {
+                                    Image("Bonus")
+                                        .resizable()
+                                        .frame(width: 140, height: 140)
+                                        .clipShape(Circle())
+                                    Text("Bonus")
+                                }
+                            }
                             .buttonStyle(.plain)
                         }
                         .padding()
@@ -329,6 +337,8 @@ struct ContentView: View {
                     }
                     .padding()
                     .background(Color.clear)
+                    
+                
                 }
             }
             .typeText(

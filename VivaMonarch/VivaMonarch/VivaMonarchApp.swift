@@ -18,6 +18,7 @@ struct VivaMonarchApp: App {
             ContentView(viewModel: viewModel)
                 .environment(model)
         }
+       
 
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView(viewModel: viewModel)

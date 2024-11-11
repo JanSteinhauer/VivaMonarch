@@ -40,11 +40,15 @@ struct PopulationChartView: View {
 
                }
                .chartXAxis {
-                   AxisMarks(values: Array(2016...2023))
+                   AxisMarks(values: Array(2016...2023)) { value in
+                       AxisValueLabel("\(Int(value.index))")
+                   }
                }
+
+
                .chartXScale(domain: 2016...2023) // Added this line
                .chartYScale(domain: 0...(maxPopulation-8))
-               .frame(width: 400, height: 110)
+               .frame(width: 300, height: 110)
                .padding()
            }
        }
