@@ -216,28 +216,4 @@ struct ConditionalGestureModifier: ViewModifier {
 
 
 
-class AudioManager: ObservableObject {
-    @Published var audioPlayer: AVAudioPlayer?
-    
-    func playSound(named soundFileName: String) {
-        guard let path = Bundle.main.path(forResource: soundFileName, ofType: nil) else {
-            print("Sound file not found: \(soundFileName)")
-            return
-        }
-        let url = URL(fileURLWithPath: path)
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-            print("Playing sound: \(soundFileName)")
-        } catch {
-            print("Could not load file \(soundFileName): \(error)")
-        }
-    }
-    
-    func stopAudio() {
-        audioPlayer?.stop()
-        audioPlayer = nil
-        print("Audio stopped.")
-    }
-}
+

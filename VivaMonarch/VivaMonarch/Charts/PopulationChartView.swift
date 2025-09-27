@@ -7,21 +7,15 @@
 import SwiftUI
 import Charts
 
-struct PopulationData: Identifiable {
-    let id = UUID()
-    let year: Int
-    let population: Double
-}
-
 struct PopulationChartView: View {
     let data : [PopulationData]
 
-    @State private var selectedDataID: UUID?
-       @State private var showAllLabels = false
+    @State var selectedDataID: Int?
+       @State var showAllLabels = false
 
     
-    private var maxPopulation: Double {
-            data.map { $0.population }.max() ?? 6.5
+    var maxPopulation: Double {
+        data.map { Double($0.population) }.max() ?? 6.5
         }
     
        var body: some View {

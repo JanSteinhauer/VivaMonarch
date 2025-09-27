@@ -36,6 +36,17 @@
 		EBF195622CE12240008B33B4 /* PopulationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195612CE1223F008B33B4 /* PopulationChartView.swift */; };
 		EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF195632CE1236A008B33B4 /* MigrationChartView.swift */; };
 		EBF195672CE13FF9008B33B4 /* AmbientSounds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBF195662CE13FF9008B33B4 /* AmbientSounds.mp3 */; };
+		EC0840242E882144000E2940 /* ActiveSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840232E882144000E2940 /* ActiveSpace.swift */; };
+		EC0840262E882154000E2940 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840252E882154000E2940 /* ChartType.swift */; };
+		EC0840282E88216B000E2940 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840272E88216B000E2940 /* Media.swift */; };
+		EC08402A2E882182000E2940 /* SpaceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840292E882182000E2940 /* SpaceID.swift */; };
+		EC08402C2E882194000E2940 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC08402B2E882194000E2940 /* Sounds.swift */; };
+		EC0840312E8821F5000E2940 /* PopulationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840302E8821F5000E2940 /* PopulationData.swift */; };
+		EC0840342E88223A000E2940 /* HubGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840332E88223A000E2940 /* HubGrid.swift */; };
+		EC0840362E882255000E2940 /* HubCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840352E882255000E2940 /* HubCard.swift */; };
+		EC0840382E882275000E2940 /* ChartBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840372E882275000E2940 /* ChartBoard.swift */; };
+		EC08403A2E882290000E2940 /* SpeciesChartBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840392E882290000E2940 /* SpeciesChartBlock.swift */; };
+		EC4CBF532E882A74007304BB /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CBF522E882A74007304BB /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +81,17 @@
 		EBF195612CE1223F008B33B4 /* PopulationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationChartView.swift; sourceTree = "<group>"; };
 		EBF195632CE1236A008B33B4 /* MigrationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationChartView.swift; sourceTree = "<group>"; };
 		EBF195662CE13FF9008B33B4 /* AmbientSounds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AmbientSounds.mp3; sourceTree = "<group>"; };
+		EC0840232E882144000E2940 /* ActiveSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSpace.swift; sourceTree = "<group>"; };
+		EC0840252E882154000E2940 /* ChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartType.swift; sourceTree = "<group>"; };
+		EC0840272E88216B000E2940 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		EC0840292E882182000E2940 /* SpaceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceID.swift; sourceTree = "<group>"; };
+		EC08402B2E882194000E2940 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		EC0840302E8821F5000E2940 /* PopulationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationData.swift; sourceTree = "<group>"; };
+		EC0840332E88223A000E2940 /* HubGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubGrid.swift; sourceTree = "<group>"; };
+		EC0840352E882255000E2940 /* HubCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubCard.swift; sourceTree = "<group>"; };
+		EC0840372E882275000E2940 /* ChartBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBoard.swift; sourceTree = "<group>"; };
+		EC0840392E882290000E2940 /* SpeciesChartBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesChartBlock.swift; sourceTree = "<group>"; };
+		EC4CBF522E882A74007304BB /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +132,11 @@
 				EB0390C92BB997FF004423E0 /* ViewModel.swift */,
 				EBCE0B242BD2D9A7000B003D /* ViewModelMap.swift */,
 				EBEFBEA92CD01B46001DA80F /* ImmersiveVideoGallery.swift */,
+				EC4CBF522E882A74007304BB /* AudioManager.swift */,
 				EBEFBEAB2CD01B70001DA80F /* VideoGallery.swift */,
+				EC0840322E882223000E2940 /* Chart */,
+				EC08402F2E8821E8000E2940 /* Data */,
+				EC0840202E88210F000E2940 /* Enums */,
 				EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */,
 				EB0390D22BB9B386004423E0 /* TypeTextModifier.swift */,
 				EB0390B62BB997A6004423E0 /* VivaMonarchApp.swift */,
@@ -175,6 +201,37 @@
 				EBF195632CE1236A008B33B4 /* MigrationChartView.swift */,
 			);
 			path = Charts;
+			sourceTree = "<group>";
+		};
+		EC0840202E88210F000E2940 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				EC0840232E882144000E2940 /* ActiveSpace.swift */,
+				EC0840252E882154000E2940 /* ChartType.swift */,
+				EC0840272E88216B000E2940 /* Media.swift */,
+				EC0840292E882182000E2940 /* SpaceID.swift */,
+				EC08402B2E882194000E2940 /* Sounds.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		EC08402F2E8821E8000E2940 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EC0840302E8821F5000E2940 /* PopulationData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		EC0840322E882223000E2940 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				EC0840332E88223A000E2940 /* HubGrid.swift */,
+				EC0840352E882255000E2940 /* HubCard.swift */,
+				EC0840372E882275000E2940 /* ChartBoard.swift */,
+				EC0840392E882290000E2940 /* SpeciesChartBlock.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,17 +319,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB0390D52BB9B3C3004423E0 /* Title.swift in Sources */,
+				EC08403A2E882290000E2940 /* SpeciesChartBlock.swift in Sources */,
+				EC0840362E882255000E2940 /* HubCard.swift in Sources */,
+				EC0840262E882154000E2940 /* ChartType.swift in Sources */,
+				EC0840312E8821F5000E2940 /* PopulationData.swift in Sources */,
 				EB0390B92BB997A6004423E0 /* ContentView.swift in Sources */,
 				EBEFBEAA2CD01B46001DA80F /* ImmersiveVideoGallery.swift in Sources */,
 				EB0390CF2BB9A08D004423E0 /* Gallery.swift in Sources */,
+				EC0840242E882144000E2940 /* ActiveSpace.swift in Sources */,
 				EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */,
+				EC08402C2E882194000E2940 /* Sounds.swift in Sources */,
 				EB0390B72BB997A6004423E0 /* VivaMonarchApp.swift in Sources */,
+				EC4CBF532E882A74007304BB /* AudioManager.swift in Sources */,
 				EB0390D12BB9A7A6004423E0 /* ImmersiveViewGallery.swift in Sources */,
 				EB0390D32BB9B386004423E0 /* TypeTextModifier.swift in Sources */,
+				EC0840342E88223A000E2940 /* HubGrid.swift in Sources */,
 				EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */,
+				EC0840382E882275000E2940 /* ChartBoard.swift in Sources */,
 				EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */,
+				EC08402A2E882182000E2940 /* SpaceID.swift in Sources */,
 				EBF195622CE12240008B33B4 /* PopulationChartView.swift in Sources */,
 				EB0390CA2BB997FF004423E0 /* ViewModel.swift in Sources */,
+				EC0840282E88216B000E2940 /* Media.swift in Sources */,
 				EB0390BB2BB997A6004423E0 /* ImmersiveView.swift in Sources */,
 				EBEFBEAC2CD01B70001DA80F /* VideoGallery.swift in Sources */,
 				EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */,
