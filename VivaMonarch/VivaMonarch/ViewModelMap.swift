@@ -171,7 +171,7 @@ struct ConditionalGestureModifier: ViewModifier {
                         // Background entity is centered by default
                         
                         // Disable collision and interaction on text and background entities
-                        textEntity.components[CollisionComponent.self] = nil
+                        textEntity.components.remove(CollisionComponent.self)
                         backgroundEntity.components[CollisionComponent.self] = nil
                         
                         // Create a parent entity to hold both the text and background

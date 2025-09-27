@@ -20,7 +20,6 @@
 		EB0390D12BB9A7A6004423E0 /* ImmersiveViewGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D02BB9A7A6004423E0 /* ImmersiveViewGallery.swift */; };
 		EB0390D32BB9B386004423E0 /* TypeTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D22BB9B386004423E0 /* TypeTextModifier.swift */; };
 		EB0390D52BB9B3C3004423E0 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D42BB9B3C3004423E0 /* Title.swift */; };
-		EB0390D72BB9BC79004423E0 /* DigitalRain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D62BB9BC79004423E0 /* DigitalRain.swift */; };
 		EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB0390D82BB9BCB0004423E0 /* Shaders.metal */; };
 		EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */; };
 		EBCBF8FA2CE0301100FE1216 /* Introduction.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBCBF8F92CE0301100FE1216 /* Introduction.wav */; };
@@ -55,7 +54,6 @@
 		EB0390D02BB9A7A6004423E0 /* ImmersiveViewGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveViewGallery.swift; sourceTree = "<group>"; };
 		EB0390D22BB9B386004423E0 /* TypeTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTextModifier.swift; sourceTree = "<group>"; };
 		EB0390D42BB9B3C3004423E0 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
-		EB0390D62BB9BC79004423E0 /* DigitalRain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRain.swift; sourceTree = "<group>"; };
 		EB0390D82BB9BCB0004423E0 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		EB06AA6B2CBD97DA00B7E008 /* ViewModelBeginning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBeginning.swift; sourceTree = "<group>"; };
 		EBCBF8F92CE0301100FE1216 /* Introduction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Introduction.wav; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				EB0390CE2BB9A08D004423E0 /* Gallery.swift */,
 				EB0390D02BB9A7A6004423E0 /* ImmersiveViewGallery.swift */,
 				EB0390BA2BB997A6004423E0 /* ImmersiveView.swift */,
-				EB0390D62BB9BC79004423E0 /* DigitalRain.swift */,
 				EB0390D82BB9BCB0004423E0 /* Shaders.metal */,
 				EB0390D42BB9B3C3004423E0 /* Title.swift */,
 				EB0390BC2BB997A6004423E0 /* ImageBasedLighting.skybox */,
@@ -266,7 +263,6 @@
 			files = (
 				EB0390D52BB9B3C3004423E0 /* Title.swift in Sources */,
 				EB0390B92BB997A6004423E0 /* ContentView.swift in Sources */,
-				EB0390D72BB9BC79004423E0 /* DigitalRain.swift in Sources */,
 				EBEFBEAA2CD01B46001DA80F /* ImmersiveVideoGallery.swift in Sources */,
 				EB0390CF2BB9A08D004423E0 /* Gallery.swift in Sources */,
 				EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */,
@@ -413,7 +409,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VivaMonarch/Preview Content\"";
-				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				DEVELOPMENT_TEAM = PS6GTP327T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -422,7 +418,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SteinhauerInc.VivaMonarch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.vivamonarch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -439,7 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VivaMonarch/Preview Content\"";
-				DEVELOPMENT_TEAM = N3Q3GX6Q6Z;
+				DEVELOPMENT_TEAM = PS6GTP327T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -448,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SteinhauerInc.VivaMonarch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jansteinhauer.vivamonarch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;

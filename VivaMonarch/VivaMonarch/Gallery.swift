@@ -13,23 +13,14 @@ class Gallery {
     private var sorted = true
 
     func setupContentEntity() -> Entity {
-
-        // Load images
-        for i in 1..<13 {
-            let name = "laputa\(String(format: "%03d", i))"
-            if let texture = try? TextureResource.load(named: name) {
-                images.append(MaterialParameters.Texture(texture))
-            }
+        if images.isEmpty {
+            loadImages()
+            setup()
+            addSkydome()
         }
-
-        // Setup the content
-        setup()
-
-        // Add skydome
-        addSkydome()
-
         return contentEntity
     }
+
 
     func toggleSorted() {
         if sorted {
@@ -42,6 +33,15 @@ class Gallery {
     }
 
     // MARK: - Private
+    
+    private func loadImages(){
+        for i in 1..<13 {
+            let name = "laputa\(String(format: "%03d", i))"
+            if let texture = try? TextureResource.load(named: name) {
+                images.append(.init(texture))
+            }
+        }
+    }
 
     private func setup() {
 

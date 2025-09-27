@@ -163,7 +163,7 @@ struct ContentView: View {
                                         Text("California condor")
                                             .font(.system(size: 20))
                                             .padding(.top)
-                                        PopulationChartView(data: turtle_population)
+                                        PopulationChartView(data: condor_population)
                                             .frame(height: 100)
                                     }
                                        
