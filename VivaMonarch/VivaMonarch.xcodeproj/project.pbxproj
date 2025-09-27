@@ -210,8 +210,6 @@
 			children = (
 				EBF195612CE1223F008B33B4 /* PopulationChartView.swift */,
 				EBF195632CE1236A008B33B4 /* MigrationChartView.swift */,
-				EC0840332E88223A000E2940 /* HubGrid.swift */,
-				EC0840352E882255000E2940 /* HubCard.swift */,
 				EC0840372E882275000E2940 /* ChartBoard.swift */,
 				EC0840392E882290000E2940 /* SpeciesChartBlock.swift */,
 			);
@@ -234,6 +232,8 @@
 				EC59B1732E886483003F7890 /* Gallery */,
 				EC59B1722E88645B003F7890 /* VidoeGallery */,
 				EB0390BA2BB997A6004423E0 /* ImmersiveView.swift */,
+				EC0840332E88223A000E2940 /* HubGrid.swift */,
+				EC0840352E882255000E2940 /* HubCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

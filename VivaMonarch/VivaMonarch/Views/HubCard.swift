@@ -22,6 +22,11 @@ struct HubCard: View {
                 Text(title)
             }
             .cornerRadius(15)
+            .frame(width: 180, height: 220)
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.primary.opacity(0.05))
+            )
         }
         .buttonStyle(.plain)
         .padding()

@@ -10,7 +10,6 @@ struct ContentView: View {
     @State private var activeSpace: ActiveSpace = .common
     @State private var selectedChart: ChartType = .none
 
-    // Env API
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
 
@@ -19,7 +18,6 @@ struct ContentView: View {
 
         NavigationStack {
             VStack {
-                // Title with typewriter overlay
                 Text(model.finalTitle)
                     .monospaced()
                     .font(.system(size: 50, weight: .bold))
@@ -37,7 +35,6 @@ struct ContentView: View {
                     .font(.title)
                     .opacity(model.isTitleFinished ? 1 : 0)
 
-                // Body: either a chart board or the hub grid
                
                     if selectedChart != .none {
                         
