@@ -19,24 +19,28 @@ struct VivaMonarchApp: App {
                 .environment(model)
         }
        
-
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView(viewModel: viewModel)
         }.immersionStyle(selection: .constant(.full), in: .full)
+        
         ImmersiveSpace(id: "showImmersiveSpaceGallery") {
             ImmersiveViewGallery()
         }
+        
         ImmersiveSpace(id: "showImmersiveSpaceVideoGallery") {
             ImmersiveVideoGallery()
         }
         .immersionStyle(selection: .constant(.full), in: .full)
+        
         ImmersiveSpace(id: "showImmersiveSpaceAmerica") {
             ViewModelMap()
         }
         .immersionStyle(selection: .constant(.full), in: .full)
+        
         ImmersiveSpace(id: "showVieModelBeginning") {
             VieModelBeginning()
         }
+        
         ImmersiveSpace(id: "CommonImmersiveSpace") {
                     ImmersiveView(viewModel: viewModel)
                 }

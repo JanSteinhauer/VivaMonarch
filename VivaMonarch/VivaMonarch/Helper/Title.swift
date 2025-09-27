@@ -9,7 +9,6 @@ import Observation
 
 @Observable
 class Title {
-
     var titleText: String = ""
     var isTitleFinished: Bool = false
     var finalTitle: String = "Welcome to Viva Monarch"
