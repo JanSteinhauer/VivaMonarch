@@ -42,7 +42,7 @@ struct VivaMonarchApp: App {
         }
         
         ImmersiveSpace(id: "CommonImmersiveSpace") {
-                    ImmersiveView(viewModel: viewModel)
-                }
+            ImmersiveView(viewModel: viewModel)
+        }
     }
 }
