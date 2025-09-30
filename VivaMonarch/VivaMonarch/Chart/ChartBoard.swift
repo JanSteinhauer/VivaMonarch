@@ -23,12 +23,12 @@ struct ChartBoardView: View {
                     .padding(.top)
                 VStack {
                     HStack {
-                        SpeciesChartBlock(title: "Monarch Butterfly", data: monarch)
-                        SpeciesChartBlock(title: "Whale", data: whale)
+                        SpeciesChartBlock(title: "Monarch Butterfly", data: monarch, tint: .orange)
+                        SpeciesChartBlock(title: "Gray Whale", data: whale, tint: .blue)
                     }
                     HStack {
-                        SpeciesChartBlock(title: "Turtle", data: turtle)
-                        SpeciesChartBlock(title: "California condor", data: condor)
+                        SpeciesChartBlock(title: "Sea Turtle (Canaveral nests)", data: turtle, tint: .green)
+                        SpeciesChartBlock(title: "California Condor", data: condor, tint: .purple)
                     }
                 }
                 .padding(.bottom)
