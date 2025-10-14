@@ -14,4 +14,5 @@ enum ActiveSpace: String, Equatable {
     case videoGallery              // Flat video panel
     case america                   // Map scene
     case beginning                 // RealityKit starter scene
+    case aiMonarchImmersive
 }

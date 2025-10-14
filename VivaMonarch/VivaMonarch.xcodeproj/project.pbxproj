@@ -46,6 +46,12 @@
 		EC0840362E882255000E2940 /* HubCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840352E882255000E2940 /* HubCard.swift */; };
 		EC0840382E882275000E2940 /* ChartBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840372E882275000E2940 /* ChartBoard.swift */; };
 		EC08403A2E882290000E2940 /* SpeciesChartBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0840392E882290000E2940 /* SpeciesChartBlock.swift */; };
+		EC18C18E2E9EE0D8007EF479 /* TTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C18D2E9EE0D8007EF479 /* TTSManager.swift */; };
+		EC18C1902E9EE0F0007EF479 /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C18F2E9EE0F0007EF479 /* SpeechManager.swift */; };
+		EC18C1922E9EE107007EF479 /* MonarchAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C1912E9EE107007EF479 /* MonarchAI.swift */; };
+		EC18C1942E9EE121007EF479 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C1932E9EE121007EF479 /* ChatMessage.swift */; };
+		EC18C1962E9EE13D007EF479 /* ImmersiveMonarchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C1952E9EE13D007EF479 /* ImmersiveMonarchView.swift */; };
+		EC18C1982E9EE175007EF479 /* MonarchAIChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC18C1972E9EE175007EF479 /* MonarchAIChatView.swift */; };
 		EC4CBF532E882A74007304BB /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CBF522E882A74007304BB /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +97,12 @@
 		EC0840352E882255000E2940 /* HubCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubCard.swift; sourceTree = "<group>"; };
 		EC0840372E882275000E2940 /* ChartBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBoard.swift; sourceTree = "<group>"; };
 		EC0840392E882290000E2940 /* SpeciesChartBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesChartBlock.swift; sourceTree = "<group>"; };
+		EC18C18D2E9EE0D8007EF479 /* TTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSManager.swift; sourceTree = "<group>"; };
+		EC18C18F2E9EE0F0007EF479 /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+		EC18C1912E9EE107007EF479 /* MonarchAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonarchAI.swift; sourceTree = "<group>"; };
+		EC18C1932E9EE121007EF479 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		EC18C1952E9EE13D007EF479 /* ImmersiveMonarchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveMonarchView.swift; sourceTree = "<group>"; };
+		EC18C1972E9EE175007EF479 /* MonarchAIChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonarchAIChatView.swift; sourceTree = "<group>"; };
 		EC4CBF522E882A74007304BB /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +154,7 @@
 				EB0390C32BB997A8004423E0 /* Info.plist */,
 				EB0390C02BB997A8004423E0 /* Preview Content */,
 				EC59B1702E8863C9003F7890 /* ViewModel */,
+				EC18C18C2E9EE0BE007EF479 /* ButterflyAI */,
 			);
 			path = VivaMonarch;
 			sourceTree = "<group>";
@@ -214,6 +227,19 @@
 				EC0840392E882290000E2940 /* SpeciesChartBlock.swift */,
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		EC18C18C2E9EE0BE007EF479 /* ButterflyAI */ = {
+			isa = PBXGroup;
+			children = (
+				EC18C18D2E9EE0D8007EF479 /* TTSManager.swift */,
+				EC18C18F2E9EE0F0007EF479 /* SpeechManager.swift */,
+				EC18C1912E9EE107007EF479 /* MonarchAI.swift */,
+				EC18C1932E9EE121007EF479 /* ChatMessage.swift */,
+				EC18C1952E9EE13D007EF479 /* ImmersiveMonarchView.swift */,
+				EC18C1972E9EE175007EF479 /* MonarchAIChatView.swift */,
+			);
+			path = ButterflyAI;
 			sourceTree = "<group>";
 		};
 		EC59B1702E8863C9003F7890 /* ViewModel */ = {
@@ -353,20 +379,25 @@
 				EB0390D52BB9B3C3004423E0 /* Title.swift in Sources */,
 				EC08403A2E882290000E2940 /* SpeciesChartBlock.swift in Sources */,
 				EC0840362E882255000E2940 /* HubCard.swift in Sources */,
+				EC18C1942E9EE121007EF479 /* ChatMessage.swift in Sources */,
 				EC0840262E882154000E2940 /* ChartType.swift in Sources */,
+				EC18C18E2E9EE0D8007EF479 /* TTSManager.swift in Sources */,
 				EC0840312E8821F5000E2940 /* PopulationData.swift in Sources */,
 				EB0390B92BB997A6004423E0 /* ContentView.swift in Sources */,
+				EC18C1962E9EE13D007EF479 /* ImmersiveMonarchView.swift in Sources */,
 				EBEFBEAA2CD01B46001DA80F /* ImmersiveVideoGallery.swift in Sources */,
 				EB0390CF2BB9A08D004423E0 /* Gallery.swift in Sources */,
 				EC0840242E882144000E2940 /* ActiveSpace.swift in Sources */,
 				EB0390D92BB9BCB0004423E0 /* Shaders.metal in Sources */,
 				EC08402C2E882194000E2940 /* Sounds.swift in Sources */,
 				EB0390B72BB997A6004423E0 /* VivaMonarchApp.swift in Sources */,
+				EC18C1902E9EE0F0007EF479 /* SpeechManager.swift in Sources */,
 				EC4CBF532E882A74007304BB /* AudioManager.swift in Sources */,
 				EB0390D12BB9A7A6004423E0 /* ImmersiveViewGallery.swift in Sources */,
 				EB0390D32BB9B386004423E0 /* TypeTextModifier.swift in Sources */,
 				EC0840342E88223A000E2940 /* HubGrid.swift in Sources */,
 				EB06AA6C2CBD97DB00B7E008 /* ViewModelBeginning.swift in Sources */,
+				EC18C1922E9EE107007EF479 /* MonarchAI.swift in Sources */,
 				EC0840382E882275000E2940 /* ChartBoard.swift in Sources */,
 				EBF195642CE1236A008B33B4 /* MigrationChartView.swift in Sources */,
 				EC08402A2E882182000E2940 /* SpaceID.swift in Sources */,
@@ -376,6 +407,7 @@
 				EB0390BB2BB997A6004423E0 /* ImmersiveView.swift in Sources */,
 				EBEFBEAC2CD01B70001DA80F /* VideoGallery.swift in Sources */,
 				EBCE0B252BD2D9A7000B003D /* ViewModelMap.swift in Sources */,
+				EC18C1982E9EE175007EF479 /* MonarchAIChatView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +556,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -550,6 +583,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};

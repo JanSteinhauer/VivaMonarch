@@ -13,4 +13,5 @@ enum ChartType {
     case migration
     case butterflyhub
     case credits
+    case aiMonarch
 }

@@ -53,6 +53,8 @@ struct ChartBoardView: View {
 
             case .none:
                 EmptyView()
+            case .aiMonarch:
+                EmptyView()
             }
 
             Button {

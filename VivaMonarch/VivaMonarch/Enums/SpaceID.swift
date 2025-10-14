@@ -14,4 +14,5 @@ enum SpaceID {
     static let videoGallery       = "showImmersiveSpaceVideoGallery"
     static let america            = "showImmersiveSpaceAmerica"
     static let beginning          = "showVieModelBeginning"
+    static let monarchSpace       = "MonarchSpace"
 }
