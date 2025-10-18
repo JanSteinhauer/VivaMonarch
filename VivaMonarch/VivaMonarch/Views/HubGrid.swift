@@ -27,7 +27,7 @@ struct HubGrid: View {
             HubCard(image: "MonarchMigration", title: "Monarch Home", action: onOpenMonarchHome)
             HubCard(image: "Credits", title: "Credits", action: onOpenCredits)
 //            HubCard(image: "Bonus", title: "Bonus", action: onOpenBonus)
-            HubCard(image: "Bonus", title: "AI Monarch", action: onOpenAIMonarch)
+            HubCard(image: "MonarchAI", title: "AI Monarch", action: onOpenAIMonarch)
         }
         .background(Color.clear)
     }
